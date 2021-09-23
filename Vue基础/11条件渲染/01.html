@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 调整dispaly -->
+      <h1
+        v-show="false
+      "
+      >
+        {{desc}}
+      </h1>
+      <h1
+        v-show="a
+      "
+      >
+        <!-- 频率比较高 -->
+        {{desc}}
+      </h1>
+      <h2
+        v-if="false
+      "
+      >
+        <!-- 频率比较低 -->
+        {{desc}}
+      </h2>
+      <h2
+        v-if="a
+      "
+      >
+        {{desc}}
+      </h2>
+      <div>
+        <p>{{n}}</p>
+        <button @click="n++">n+1</button>
+        <div v-show="n===1">AAA</div>
+        <div v-show="n===2">BBB</div>
+        <div v-show="n===3">CCC</div>
+
+        <!-- 同组判断 -->
+        <div v-if="n===1">A8A</div>
+        <div v-else-if="n===2">B6B</div>
+        <div v-else-if="n===3">C8C</div>
+      </div>
+
+      <!-- template会形成作用域 二者配合使用template与v-if的使用 -->
+      <template v-if="n==1">
+        <h5>1</h5>
+        <h5>2</h5>
+        <h5>3</h5>
+      </template>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false;
+
+      // {{js表达式}}
+
+      new Vue({
+        el: "#root", //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+        data() {
+          return {
+            desc: "欢迎欢迎",
+            a: true,
+            n: 0,
+          };
+        },
+      });
+    </script>
+  </body>
+</html>

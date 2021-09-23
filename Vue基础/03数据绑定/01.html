@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        单向数据绑定：<input type="text" :value="name">
+        双向数据绑定：<input type="text" v-model:value="name">
+        <!--  只能用于输入类标签   v-mode----value 默认收集value值 -->
+        双向数据绑定：<input type="text" v-model="name">
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el: '#root', //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+            data () {
+                return {
+                    name: '你好'
+                }
+            }
+        });
+    </script>
+
+    
+</body>
+</html>

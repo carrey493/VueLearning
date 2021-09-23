@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<button>按钮一</button>
+<button>按钮二</button>
+<button>按钮三 </button>
+
+<script>
+  //ES5 改自己会改变外面的 var没有块级作用域
+  // 1.变量作用域：什么范围内可用
+  {
+    var name1 = 'qq';
+    console.log(name);
+  }
+  console.log(name);
+
+  // 2.没有块级作用域：if
+  var func;
+  if(true){
+    var name2 = 'aa';
+    func = function (){
+      console.log(name2);
+    }
+  }
+  name2 = 'bb';
+  func();
+  //bb
+  console.log(name);
+
+  // 3.没有块级作用域：for
+
+  var btns1 = document.getElementsByTagName('button');
+  //遍历已完成 i=3
+  for(var i=0;i<btns.length;i++){
+    btns[i].addEventListener('click',function () {
+      console.log('第' + i + '个按钮被点击');
+    })
+  }
+  var btns2 = document.getElementsByTagName('button');
+  //遍历已完成 i=3
+  //解决:闭包可以解决->函数是一个作用域 匿名闭包->函数
+  for(var i=0;i<btns2.length;i++){
+    (function (i) {
+      btns2[i].addEventListener('click',function () {
+        console.log('第' + i + '个按钮被点击');
+      })
+    })(i);
+  }
+
+  //ES6 let有块级作用域 自己改变时不影响其它
+  const btns3 = document.getElementsByTagName('button');
+  for(let i=0;i<btns3.length;i++){
+    btns3[i].addEventListener('click',function () {
+      console.log('第' + i + '个按钮被点击');
+    })
+  }
+</script>
+</body>
+</html>

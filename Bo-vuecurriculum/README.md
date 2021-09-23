@@ -1,0 +1,322 @@
+# bo-vuecurriculum
+## vue-examples
+## 00.Project setup
+```
+npm install
+```
+
+### 1.Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### 2.Compiles and minifies for production
+```
+npm run build
+```
+
+### 3.Lints and fixes files
+```
+npm run lint
+```
+
+### 4.Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## 01.vue-project
+
+## 02.git&vue
+
+## 03.Frontend
+
+## 04.Vue+Structure
+
+## 05.Vue+Components
+
+### 1.Components Basics
+
+- 组件(Component)，是Vue.js最强大的功能之一。组件可以扩展 HTML元素,封装可重用的代码
+- ·在较高层面,组件是自定义元素，Vue.js 的编译器为它添加特殊功能
+- 所有Vue组件同时也是Vue的实例(类Vue创建出的对象)，并提供相同的生命周期回调方法
+- 项目结构中,components与views的区别
+  - components，业务逻辑无关的封装可复用的组件，例如全局警告框等. 
+  - Views,具体的视图组件
+
+### 2.全局注册
+
+![image-20210830224444523](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210830224444523.png)
+
+![image-20210830224552004](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210830224552004.png)
+
+### 3.组件结构
+
+![image-20210830224829634](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210830224829634.png)
+
+![image-20210830225326083](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210830225326083.png)
+
+### 4.Local Registration
+
+![image-20210830225613184](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210830225613184.png)
+
+- 原单页面开发中，将所有组件统一编译打包，在用户首次请求时全部响应给客户端。由于将用户当前还无需使用的代码全部返回，致使首屏加载显示过慢
+- 延迟加载组件。声明为延迟加载组件，在编译时将编译为独立的文件，在组件真正渲染时，下载相应组件文件渲染,可极大的增加互交体验
+
+![image-20210830232547287](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210830232547287.png)
+
+![image-20210830232637869](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210830232637869.png)
+
+### 5.Router
+
+- 基于Vue实现组合组件,组成应用
+- 基于vue-router实现SPA应用
+- 即，由vue-router在同一html页面切换显示不同的组件，实现单页面应用
+- 即，由vue-router实现当请求地址改变时，将什么组件渲染到什么地方
+- Vue工程中,默认的路由文件,src/index.js
+- 可用@，代表src。结合path Intellisense插件实现自动提示
+
+![image-20210830234611640](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210830234611640.png)
+
+- <router-link>，在具有路由功能的应用中(点击)导航。通过to属性指定目标地址，默认渲染成<a>标签
+- 可以通过配置tag属性生成别的标签,例如li
+
+![image-20210830234738637](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210830234738637.png)
+
+- <router-view>，渲染路径匹配到的视图组件
+- 支持内嵌<router-view>，根据嵌套路径,渲染嵌套组件
+
+![image-20210830234842958](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210830234842958.png)
+
+## 06.Data&Computed
+
+### 1.data Must Be a Function
+
+- 需要将,MVVM中的视图内容,绑定VM中的数据
+- 当一个Vue实例被创建时，data()方法返回值中声明的属性，自动为vue响应式属性
+- 即，当这些属性的值发生改变时,视图将会产生“响应”，自动更新组件模板中的值
+- vue组件中的data()，必须是一个函数
+- 只有在data() return中预定义的属性才支持响应式更新;因此即使当前不使用，而以后使用的属性,也必须提前定义，但可先置空引用null
+
+### 2.Template Syntax
+
+- Vue使用基于HTML的模板语法,声明式地将DOM绑定至Vue实例的数据
+- Vue模板语法基于HTML
+- 在底层的实现上，Vue将模板编译成虚拟DOM渲染函数。结合响应系统智能地计算出最少需要重新渲染的组件，把 DOM操作次数减到最少
+- 支持基于JSX语法的直接渲染(render)函数
+
+### 3.Text
+
+- 数据绑定使用“Mustache”语法(双大括号)的文本插值。标签将会被替代为绑定值,当绑定数据发生改变,插值处的内容自动更新
+
+![image-20210902000820907](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210902000820907.png)
+
+![image-20210902002056979](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210902002056979.png)
+
+![image-20210902002302509](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210902002302509.png)
+
+![image-20210902002311269](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210902002311269.png)
+
+### 4.Using JavaScript Expressions
+
+- 对于所有的数据绑定，Vue提供了完全的JavaScript表达式支持，表达式会作为JavaScript解析
+
+![image-20210902002531457](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210902002531457.png)
+
+### 5.Computed Properties
+
+- 模板内的表达式虽然便利，但在模板放入太多的逻辑会让模板过重且难以维护
+- 模板应提供简单的声明式逻辑
+
+![image-20210902002842804](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210902002842804.png)
+
+- 因此,对于复杂的逻辑,应当使用计算属性。声明的是属性,而非方法
+
+![image-20210902004912753](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210902004912753.png)
+
+![image-20210902004924694](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210902004924694.png)
+
+## 07.Computer + Return + A+Function
+
+![image-20210905143533298](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905143533298.png)
+
+* ·计算属性是属性，无法传递参数变量。但JS中，属性的值可以是一个函数
+
+![image-20210905143545001](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905143545001.png)
+
+- data中的属性必须提前声明。data中的响应式属性数据，在组件创建时确定，数据可更改，属性不能添加/更改
+- user.address属性,必须提前声明
+
+![image-20210905143728780](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905143728780.png)
+
+## 08.Lifecycle+Hooks
+
+### 1.lnstance Lifecycle Hooks
+
+- 每个Vue实例在被创建时,都要经过一系列的初始化过程
+- 例如,需要设置数据监听、编译模板、将实例挂载到DOM并在数据变化时更新DOM等等
+- 当组件生命周期变化时,触发生命周期回调函数
+
+![image-20210905144334928](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905144334928.png)
+
+![image-20210905144606304](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905144606304.png)
+
+- 在默认不保存组件实例的情况下路由切换z个组件的生命周期变化过程
+
+![image-20210905145414287](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905145414287.png)
+
+## 09.Router+Parameter&Resable+Components
+
+### 1.Router Passing Parameter
+
+- 基于RESTful的参数传递
+- 在路由配置文件中,使用:param，声明参数变量(类似SpringMVC,{Daraml)
+
+![image-20210905145810116](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905145810116.png)
+
+- 可通过，$route.params，获取路由参数
+
+![image-20210905162808752](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905162808752.png)
+
+- 可通过vue props属性获取路由参数。
+
+![image-20210905162849405](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905162849405.png)
+
+
+
+- 重复使用不触发created方法
+
+![](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905162916167.png)
+
+- 需要在组件创建，以及组件复用均执行
+- 编写一个函数。重写created()中调用，以及复用组件的某一个回调函数，均调用
+  - beforeRouteUpdate (to, from, next)。当复用的组件渲染后，路由更新前(即，首次进入不会回调)回调
+  - beforeUpdate() 。复用组件渲染后，props/data数据更新前回调 
+
+![image-20210905164328845](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905164328845.png)
+
+### 02.Keep-alive
+
+- <Keep-alive>，无样式抽象的标签。缓存其中的组件对象(以及组件中的数据)
+
+- 适合在组件之间切换时,保存数据状态使用·回调函数
+
+- activated()。组件第一次渲染以及每次被激活时回调. deactivated()。组件“失活”时回调
+
+  - activated()。组件第一次渲染以及每次被激活时回调
+  - deactivated()。组件“失活”时回调
+
+  ![image-20210905164526453](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905164526453.png)
+
+- 需要在组件创建，以及组件复用均执行
+- 编写一个函数。重写created()中调用,以及复用组件的某一个回调函数，均调用
+  - beforeRouteUpdate (to, from, next)。当复用的组件渲染后，路由更新前(即,首次进入不会回调)回调
+  - beforeUpdate()。复用组件渲染后,props/data数据更新前回调
+
+![image-20210905165347724](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905165347724.png)
+
+### 03.Recommended
+
+- Vue组件粒度较细,重新创建渲染,不会有较大性能开销
+- 因此,可以不缓存重用路由切换的组件
+- 通过v-bind指令在router-view中,将标签key属性值，绑定到路由地址v-bind:key="sroute.path"
+- 即,通过Key属性值的不同，标识为不同的节点。使，组件相同，但地址内容不同的组件可各自独立渲染
+- 将在组件创建时需执行的代码(拉取数据等)，置于created()回调
+
+![image-20210905165445398](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210905165445398.png)
+
+## 10.Directives
+
+- 指令(Directives)，是带有v-前缀的特殊特性
+- 指令特性值,预期是单个JavaScript表达式
+- 指令的职责是,当表达式的值改变时，将其产生的连带影响，响应式地作用于DOM
+- v-text; v-if; v-on; v-bind; v-for; v-model;等
+- 模板语法类似于EL表达式，vue指令类似于JST标签库,2者结合即可动态的显示数据
+- 指令，必须声明在HTML标签。如果需要包含多个元素，而又无法声明div等元素包裹，可以使用<template>元素作为不可见的包裹元素
+
+### 1.v-text
+
+- 更新元素的textContent。如果需要更新部分textContent，使用{{Mustache}}插值。
+
+### 2.v-if
+
+- v-if; v-else; v-else-if
+- 根据表达式的值的真假条件渲染元素
+
+![image-20210912153331793](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912153331793.png)
+
+- Vue会尽可能高效地渲染元素，通常会复用已有HTML元素而不是重新创建
+- 可提高渲染速度，同时复用元素的属性值。例如，如果允许用户在不同的登录方式之间切换:
+
+![image-20210912153400703](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912153400703.png)
+
+### 3.v-show
+
+- 与v-if不同，元素始终会被渲染并保留在DOM中。v-show只是简单地通过修改元素display属性实现/显示隐藏;没有else分支
+
+![image-20210912154958024](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912154958024.png)
+
+### 4.v-if vs v-show
+
+- v-if，是“真正”的条件渲染，它会确保在切换过程中条件块内的组件适当地被销毁和重建
+- v-if，如果在初始渲染时条件为假，则什么也不做，直到条件第一次变真时渲染条件块
+- v-show，不管初始条件，元素总是会被渲染，并且只是简单地基于CSS进行切换;且没有else分支
+- v-if有更高的切换开销，而v-show有更高的初始渲染开销。因此，如果需要非常频繁地切换，使用v-show较好;如果在运行时条件很少改变，则使用v-if较好。
+
+### 5.v-bind
+
+- 动态绑定html标签属性,到响应式数据的表达式
+- 缩写，例如:V-bind:key，可缩写为:key
+
+![image-20210912155421527](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912155421527.png)
+
+![image-20210912163332578](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912163332578.png)
+
+## 6.v-for
+
+- 根据一组数组的选项列表进行渲染
+- 需要使用item in items形式的特殊语法，items是源数据数组并且 item是数组元素迭代的别名(foreach)
+
+![image-20210912165156166](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912165156166.png)
+
+- 为了跟踪每个节点的标识，从而重用和重新排序现有元素，需要为每项提供一个唯一 key属性。理想的key值是每项都有的且唯一的id
+
+![image-20210912171721174](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912171721174.png)
+
+![image-20210912171811632](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912171811632.png)
+
+![image-20210912171828304](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912171828304.png)
+
+### 7.Template Strings
+
+- 模板字符串,允许嵌入表达式的字符串字面量
+- 模板字符串使用反引号('),代替普通字符串的双引号和单引号
+- 模板字符串可以包含特定语法，s{expression}占位符。占位符中的表达式与文本会一起传递给一个默认函数，该函数负责将所有的部分连接起来
+
+![image-20210912171951119](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912171951119.png)
+
+### 8.Computed Properties - 2
+
+- 需，基于属性,动态计算转换属性的值。但计算属性是属性，不是函数不接受参数!
+
+![image-20210912172037941](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912172037941.png)
+
+- 属性本身不是函数，不接受参数。但JS属性的值，可以是一个函数!而函数自然可以接受参数
+
+![image-20210912172115892](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912172115892.png)
+
+- 由于JavaScript 的限制，Vue不能自动检测以下变动的数组:
+  - 利用索引直接设置一个项
+  - 修改数组的长度
+  - 在已引用的对象上增加属性
+
+![image-20210912172155775](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912172155775.png)
+
+- 通过vue提供的全局方法实现数组的动态
+- 在指定索引增加/更新对象
+- ￥set(items, indexOfltem, newValue)
+
+![image-20210912172550626](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912172550626.png)
+
+- 响应式删除指定位置数组对象
+- ￥delete(items. indexOfltem)
+
+![image-20210912173031883](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912173031883.png)

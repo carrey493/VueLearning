@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .red{
+        color: red;
+    }
+    .blue{
+        color: blue;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li v-for="(item,index) in movies" :class="changeClass()">{{item}}</li>
+  </ul>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data: {
+      movies: ['火影忍者', '海贼王' , '蜡笔小新','海绵宝宝']
+    },
+    methods: {
+      change() {
+        this.className = 'red';
+      },
+      changeClass(){
+        this.className = 'red';
+      }
+    }
+  })
+</script>
+</body>
+</html>

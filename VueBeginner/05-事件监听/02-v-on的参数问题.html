@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  {{message}}
+  <button>一</button>
+  <button>二</button>
+
+</div>
+<!--  1.事件调用的方法没有参数-->
+<!--  2.在事件定义时，写函数时省略了小括号，但是方法本身时需要一个参数的，这时候Vue会默认将浏览器产生的event事件作为参数传入到方法-->
+<!--  3.方法定义时需要event对象,同时又需要其他参数-->
+<!--  4.在调用方法时，如何手动获得浏览器参数的event对象 ： $event-->
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data: {
+      message: '你好！'
+    },
+    methods:{
+
+    }
+  })
+</script>
+</body>
+</html>

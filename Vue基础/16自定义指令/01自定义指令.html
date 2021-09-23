@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h2>当前的n值是<span>{{n}}</span></h2>
+      <h2>放大10倍后的n值是：<span v-big="n"></span></h2>
+      <button @click="n++">n+1</button>
+      <hr />
+      <input type="text" v-fbind:value="n" />
+      <hr />
+      <p v-big-plus="n">+</p>
+    </div>
+
+    <!-- 
+    Vue自定义指令
+    1.局部指令 new Vue({directive:{指令名:配置对象}})
+    2.全局指令 Vue.directive{指令名,回调函数}
+    配置对象中常用的3个回调
+    bind:指令与元素成功绑定时调用
+    inserted:指令所在元素被插入页面时调用
+    update:指令所在的模板被重新解析时调用
+    备注
+    指令定义时不加v- 但使用时要加v-
+    指令如果是多个单词要使用user-name,不要使用userName命名
+    -->
+    <script type="text/javascript">
+      //全局自定义指令
+      Vue.directive("all", {
+        //指令与元素成功绑定时，一上来
+        bind(element, binding) {
+          element.value = binding.value + 10 * 5;
+          //注意此处的this是window
+          console.log(this);
+        },
+        //指令所在元素被插入页面时
+        inserted(element, binding) {
+          element.focus();
+        },
+        //指令所在的模板被重新解析时
+        update(element, binding) {
+          element.value = binding.value + 10 * 5;
+          element.focus();
+        },
+      });
+
+      new Vue({
+        el: "#root",
+        data() {
+          return {
+            n: 1,
+          };
+        },
+        directives: {
+          //big函数什么时候会调用
+          //1.指令与元素成功绑定时，初次加载
+          //2.指令所在的模板被重新解析时
+          big(element, binding) {
+            element.innerText = binding.value * 10;
+          },
+          /* fbind(element,binding) {
+                    element.value = binding.value
+                    element.focus()
+                } */
+          fbind: {
+            //指令与元素成功绑定时，一上来
+            bind(element, binding) {
+              element.value = binding.value;
+              //注意此处的this是window
+              console.log(this);
+            },
+            //指令所在元素被插入页面时
+            inserted(element, binding) {
+              element.focus();
+            },
+            //指令所在的模板被重新解析时
+            update(element, binding) {
+              element.value = binding.value;
+              element.focus();
+            },
+          },
+          "big-plus"(element, binding) {
+            element.innerText = binding.value + 6;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

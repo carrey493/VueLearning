@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script src="../js/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>显示格式化后的时间</h2>
+        <h3>现在是{{fmtTime}}</h3>
+        <h3>现在是{{getFmtTime()}}</h3>
+        <h3>现在是{{time | timeFormater}}</h3>
+        <h3>现在是{{time | timeFormater('YYYY_MM_DD') | mySlice}}</h3>
+        <h3 :x="msg | mySlice"></h3>
+    </div>
+    
+    <script type="text/javascript">
+    /*
+    定义：对要显示的数据进行特定格式化后再显示，适用于一些简单逻辑的处理
+    - 过滤器也可以接收额外参数、多个过滤器也可以串联
+    - 并没有改变原本的数据，是产生新的对应的数据
+    */
+
+    //全局过滤器
+    Vue.filter('mySlice',function(value){
+        return value.slice(0,5)
+    })
+        new Vue ({
+            el:'#root',
+            data(){
+                return {
+                    time:1621561377603,
+                    msg:'testtest'
+                }
+            },
+            computed:{
+                fmtTime(){
+                    return dayjs(this.time).format('YYYY:MM-DD HH:mm:ss')
+                }
+            },
+            methods: {
+                getFmtTime(){
+                    return dayjs(this.time).format('YYYY--MM-DD HH:mm:ss')
+                }
+            },
+            //局部过滤器
+            filters:{
+                //str如果没有传入参数则规定一个默认的值
+                timeFormater(value,str='YYYY--MM-DD HH:mm:ss'){
+                    return dayjs(value).format(str)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

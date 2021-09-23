@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h2>今天天气{{info}}</h2>
+      <button @click="change">切换天气</button>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false;
+
+      // {{js表达式}}
+
+      const vm = new Vue({
+        el: "#root", //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+        data() {
+          return {
+            isHot: true,
+          };
+        },
+        computed: {
+          info() {
+            return this.isHot ? "炎热" : "寒冷";
+          },
+        },
+        methods: {
+          change() {
+            this.isHot = !this.isHot;
+          },
+        },
+        watch: {
+          isHot: {
+            //发生改变时
+            handler(newValue, oldVue) {
+              console.log("isHot被修改了！", newValue, oldVue);
+            },
+            //初始化让handler立即执行
+            immediate: true,
+          },
+          info: {
+            handler(newValue, oldVue) {
+              console.log("info被修改了！", newValue, oldVue);
+            },
+          },
+        },
+      });
+      //监视属性必须存在
+      //两种写法
+      vm.$watch("isHot", {
+        handler(newValue, oldVue) {
+          console.log("isHot被修改啦！", newValue, oldVue);
+        },
+        //初始化让handler立即执行
+        immediate: true,
+      });
+    </script>
+  </body>
+</html>

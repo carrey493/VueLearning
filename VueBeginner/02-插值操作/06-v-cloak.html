@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    [v-cloak] {
+        display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" v-cloak>
+  {{message}}
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  // 在vue解析前有v-cloak 在vue解析后无v-cloak
+  //解决延迟加载
+  const app = new Vue({
+    el:'#app',
+    data: {
+      message: '你好！'
+    }
+  })
+</script>
+</body>
+</html>

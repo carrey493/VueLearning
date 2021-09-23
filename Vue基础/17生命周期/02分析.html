@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h2>当前的n值是：{{n}}</h2>
+      <button @click="add">n+1</button>
+      <button @click="destroy">销毁VM</button>
+    </div>
+
+    <script type="text/javascript">
+      new Vue({
+        el: "#root",
+        /* 
+        //不能作为根元素
+        template: `
+            <div>
+                <p>123</p>
+            </div>
+            `, */
+        data() {
+          return {
+            n: 1,
+          };
+        },
+        methods: {
+          add() {
+            this.n++;
+          },
+          destroy() {
+            this.$destroy();
+            console.log("destroy");
+          },
+        },
+        watch:{
+            n(){
+                console.log('n变了')
+            }
+        },
+        beforeCreate() {
+          console.log("beforeCreate");
+          console.log(this);
+        },
+        created() {
+          console.log("created");
+          console.log(this);
+        },
+        beforeMount() {
+          console.log("beforeMount");
+          console.log(this);
+        },
+        mounted() {
+          console.log("mounted");
+          console.log(this);
+        },
+        beforeUpdate() {
+          console.log("beforeUpdate");
+          console.log(this.n);
+        },
+        updated() {
+          console.log("update");
+          console.log(this.n);
+        },
+        beforeDestroy() {
+          console.log("beforeDestroy");
+          console.log(this.n);
+          this.add()
+        },
+        destroyed() {
+            console.log('destroyed');
+        },
+      });
+    </script>
+  </body>
+</html>

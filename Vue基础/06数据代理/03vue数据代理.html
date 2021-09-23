@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 数据代理：通过一个对象代理对另一个对象中属性的操作 
+    通过vm对象来代理data对象中属性的操作（读\写）
+    通过Object.defineProperty()把data对象中所有属性添加到vm上
+    为每一个添加到vm上的属性都指定一个geeter/setter
+    _私有属性
+-->
+    <div id="root">
+        <h3>名称 {{name}}</h3>
+        <h3>地址 {{address}}</h3>
+        <h3>名称 {{_data.name}}</h3>
+
+    </div>
+    <script type="text/javascript">
+
+        // vm._data
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: '尚硅谷1',
+                address: '6#1101'
+            }
+        })
+
+        console.log(vm)
+    </script>
+</body>
+
+</html>

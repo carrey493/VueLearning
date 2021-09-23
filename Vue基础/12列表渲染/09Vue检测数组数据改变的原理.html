@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h1>学校信息</h1>
+      <h1>名称： {{name}}</h1>
+      <h1>地址： {{address}}</h1>
+      <hr />
+      <h1>学生信息</h1>
+      <button @click="addSex">添加性别属性：男</button>
+      <h2>学生姓名：{{student.name}}</h2>
+      <h2>学生年龄：{{student.age.rAge}}---{{student.age.sAge}}</h2>
+      <h2 v-if="student.sex">学生性别：{{student.sex}}</h2>
+      <ul>
+        <li v-for="(f,index) in student.friends" ::key="index">
+          {{f.name}}---{{f.age}}
+        </li>
+      </ul>
+      <hr>
+      <h2>爱好</h2>
+      <ul> 
+        <li v-for="(h,index) in student.hobby" ::key="index">
+          {{h}}
+        </li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false;
+
+      // {{js表达式}}
+
+      const vm = new Vue({
+        el: "#root", //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+        data() {
+          return {
+            name: "尚硅谷",
+            address: "北京",
+            student: {
+              name: "tom",
+              age: {
+                rAge: 40,
+                sAge: 29,
+              },
+              hobby:[
+                '篮球','读书','游戏'
+              ],
+              friends: [
+                {
+                  name: "jack",
+                  age: 16,
+                },
+                {
+                  name: "tony",
+                  age: 25,
+                },
+              ],
+            },
+          };
+        },
+        methods: {
+          addSex() {
+            // Vue.set(this.student, 'sex', '男');
+            this.$set(this.student,'sex','男')
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

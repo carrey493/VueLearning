@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <form action="" @submit.prevent="demo">
+        <label for="demo">账号</label>
+        <input type="text" id="demo" v-model.trim="account" /><br /><br /><br />
+        密码 <input type="password" v-model="password" /><br /><br /><br />
+        年龄 <input type="number" v-model.number="age" /><br /><br /><br />
+        性别： 男<input type="radio" name="sex" v-model="sex" value="man" />
+        女<input
+          type="radio"
+          name="sex"
+          v-model="sex"
+          value="woman"
+        /><br /><br /><br />
+        爱好： 学习<input type="checkbox" value="study" v-model="hobby" />
+        游戏<input type="checkbox" value="game" v-model="hobby" /> 阅读<input
+          type="checkbox"
+          value="read"
+          v-model="hobby"
+        /><br /><br /><br />
+        所属校区
+        <select v-model="city">
+          <option value="">请选择</option>
+          <option value="bj">北京</option>
+          <option value="sh">上海</option>
+          <option value="sz">深圳</option>
+          <option value="wh">武汉</option></select
+        ><br /><br /><br />
+        其它信息<br />
+        <textarea v-model.lazy="other"></textarea><br /><br /><br />
+        <input type="checkbox" /> 阅读并接受<a href="">用户协议</a
+        ><br /><br /><br />
+        <button>提交</button>
+      </form>
+    </div>
+
+    <script type="text/javascript">
+    /*
+        v-model的三个修饰符
+
+        lazy:失去焦点再收集数据
+        number:输入字符串转为有效的数字
+        -trim:输入首位空格过滤
+
+        input的type为text、radio ，v-model收集value的值
+
+        input的type为checkbox
+
+        没有配置value收集checked为布尔值
+        配置value 初始值为非数组收集checkbox的布尔值，若为数组则收集value组成的数组
+      */
+      Vue.config.productionTip = false;
+
+      // {{js表达式}}
+
+      new Vue({
+        el: "#root", //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+        data() {
+          return {
+            account: "",
+            password: "",
+            age: "",
+            sex: "man",
+            hobby: [],
+            city: "bj",
+            other: "",
+          };
+        },
+        methods: {
+          demo() {
+            console.log(JSON.stringify(this._data));
+          },
+        },
+      });
+
+      
+    </script>
+  </body>
+</html>

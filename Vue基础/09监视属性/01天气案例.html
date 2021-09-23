@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>今天天气{{info}}</h2>
+        <button @click="change">切换天气</button>
+        <button @click="isHot = !isHot">切换天气</button>
+        <button @click="window.alert(1)">切换天气</button>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        // {{js表达式}}
+
+        new Vue({
+            el: '#root', //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+            data () {
+                return {
+                    isHot: true,
+                    window
+                }
+            },
+            computed:{
+                info(){
+                    return this.isHot ? '炎热': '寒冷'
+                }
+            },
+            methods: {
+                change(){
+                    this.isHot = !this.isHot
+                }
+            },
+        });
+    </script>
+
+    
+</body>
+</html>

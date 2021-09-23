@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <style>
+      #root {
+        width: 600px;
+        height: 600px;
+        background: tan;
+        border: 1px solid magenta;
+      }
+      .test1 {
+        color: cadetblue;
+      }
+      .test2 {
+        color: khaki;
+      }
+      .test3 {
+        color: blue;
+      }
+      .at1 {
+        font-size: 20px;
+      }
+      .at2 {
+        color: beige;
+      }
+      .at3 {
+        border: 1px dashed khaki;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <h1>hello {{name}}</h1>
+      <div :class="test1">
+        <!-- 字符串写法：适用于样式的类名不确定需要动态指定 -->
+        <p>颜色</p>
+        <button @click="change">点击</button>
+      </div>
+
+      <div :class="arr">
+        <!-- 数组写法：要绑定的样式个数不确定名字不确定 -->
+        <p>颜色</p>
+        <button>点击</button>
+      </div>
+
+      <div :class="classObj">
+        <!-- 对象写法：要绑定的样式个数确定名字确定动态决定用不用· -->
+        <p>颜色</p>
+        <button>点击</button>
+      </div>
+
+      <div :style="{fontSize: fsize+ 'px'}">{{name}}</div>
+      <div :style="styleObj">{{name}}</div>
+      <div :style="[styleObj,styleObj2]">{{name}}</div>
+      <div :style="styleArr">{{name}}</div>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false;
+
+      // {{js表达式}}
+
+      new Vue({
+        el: "#root", //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+        data() {
+          return {
+            name: "jack",
+            test1: "test1",
+            arr: ["at1", "at2", "at3"],
+            classObj: {
+              at1: true,
+              at2: false,
+            },
+            fsize: 30,
+            styleObj: {
+              fontSize: "25px",
+              color: "red",
+            },
+            styleObj2: {
+              backgroundColor: "orange",
+            },
+            styleArr: [
+              {
+                color: "blue",
+              },
+              {
+                fontSize: '45px'
+              }
+            ],
+          };
+        },
+        methods: {
+          change() {
+            // this.test1 = "test2";
+            const arr = ["test1", "test2", "test3"];
+            const index = Math.floor(Math.random() * 3);
+            this.test1 = arr[index];
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

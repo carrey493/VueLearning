@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>名称</h1>{{name}}：地址{{age}}</h1>
+        <p>{{}} 属性  表达式  原型vm所有上的都能使用属性以及vue原型：数据代理</p>
+        <p>{{$options}}</p>
+        <p>{{$emit}}</p>
+        <p>{{_c}}</p>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        // {{js表达式}}
+
+        const vm = new Vue({
+            el: '#root', //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+            data () {
+                return {
+                    name: 'a',
+                    age: '22'
+                }
+            }
+        });
+        console.log(vm)
+    </script>
+
+    
+</body>
+</html>

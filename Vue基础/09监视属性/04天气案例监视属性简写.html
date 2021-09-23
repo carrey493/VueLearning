@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h2>今天天气{{info}}</h2>
+      <button @click="change">切换天气</button>
+      <hr />
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false;
+
+      // {{js表达式}}
+      //Vue能检测对象内部的属性 但是watch默认不行 使用deep属性打开监测
+      const vm = new Vue({
+        el: "#root", //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+        data() {
+          return {
+            isHot: true,
+          };
+        },
+        computed: {
+          info() {
+            return this.isHot ? "炎热" : "寒冷";
+          },
+        },
+        methods: {
+          change() {
+            this.isHot = !this.isHot;
+          },
+        },
+        watch: {
+          //正常写法
+          // isHot: {
+          //   //初始化让handler立即执行
+          //   // immediate: true,
+          //   //发生改变时
+          //   handler(newValue, oldVue) {
+          //     console.log("isHot被修改了！", newValue, oldVue);
+          //   },
+          // },
+          //简写
+          isHot(newValue, oldVue) {
+            console.log("isHot被修改了！", newValue, oldVue);
+          },
+        },
+      });
+
+      //所有Vue管理的函数不能使用箭头函数否则this指向会由vm转换为window
+      //Vue管理的函数 computed methods watch
+      vm.$watch("isHot", function (newValue, oldVue) {
+        console.log("isHot被修改了！", newValue, oldVue);
+      });
+    </script>
+  </body>
+</html>

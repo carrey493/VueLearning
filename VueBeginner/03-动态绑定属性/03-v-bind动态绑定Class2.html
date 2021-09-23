@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2 :class="[active,line]">{{message}}</h2>
+  <h3 :class="getClass()">{{message}}</h3>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el:'#app',
+    data: {
+      message: '你好！',
+      active: 'aaa',
+      line: 'bbb'
+    },
+    methods: {
+      getClass() {
+        return [this.active,this.line];
+      }
+    }
+  })
+</script>
+</body>
+</html>

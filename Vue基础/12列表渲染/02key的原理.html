@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <ul>
+        <!-- in---of -->
+        <button @click.once="add">添加</button>
+        <li v-for="(people,index) in persons" :key="people.id">
+          {{people.name}}--{{people.age}}
+          <input type="text">
+        </li>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false;
+
+      // {{js表达式}}
+
+      // key：虚拟Dom的标识 
+      // 当数据发生变化时vue根据新数据生成新的虚拟dom
+      // 随后进行新的虚拟DOM与旧的虚拟DOM的比较
+      // 内容没变直接使用之前的真实DOM
+      // 内容改变重新创建真实的DOM
+      //使用index作为key修改数据破坏顺序时会产生错误的DOM更新
+
+      new Vue({
+        el: "#root", //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+        data() {
+          return {
+            persons: [
+              { id: 1, name: "a", age: 12 },
+              { id: 2, name: "b", age: 21 },
+              { id: 3, name: "c", age: 18 },
+            ],
+          };
+        },
+        methods: {
+          add(){
+            const p = {
+              id: '004',
+              name: 'd',
+              age: 20
+            }
+            this.persons.unshift(p)
+          }
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h2>今天天气{{info}}</h2>
+      <button @click="change">切换天气</button>
+      <hr />
+      <h3>a---->{{numbers.a}}</h3>
+      <button @click="numbers.a++">a+1</button>
+      <hr />
+      <h3>b---->{{numbers.b}}</h3>
+      <button @click="numbers.b++">b+2</button>
+      <hr />
+      <h3>{{numbers.a}}********{{numbers.b}}</h3>
+      <button @click="numbers={a:98,b:87}">替换a&b</button>
+    </div>
+
+    <script type="text/javascript">
+      Vue.config.productionTip = false;
+
+      // {{js表达式}}
+      //Vue能检测对象内部的属性 但是watch默认不行 使用deep属性打开监测
+      const vm = new Vue({
+        el: "#root", //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+        data() {
+          return {
+            isHot: true,
+            numbers: {
+              a: 1,
+              b: 2,
+            },
+          };
+        },
+        computed: {
+          info() {
+            return this.isHot ? "炎热" : "寒冷";
+          },
+        },
+        methods: {
+          change() {
+            this.isHot = !this.isHot;
+          },
+        },
+        watch: {
+          isHot: {
+            //初始化让handler立即执行
+            // immediate: true,
+            //发生改变时
+            handler(newValue, oldVue) {
+              console.log("isHot被修改了！", newValue, oldVue);
+            },
+          },
+          numbers: {
+            //深度监视
+            deep:true,
+            handler() {
+              console.log('都改变啦')
+            },
+          },
+          //监视多级结构中某个属性的变化
+          "numbers.a": {
+            handler() {
+              console.log("a改变啦");
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

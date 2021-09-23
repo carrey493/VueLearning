@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>欢迎来到{{name}}</h2>
+        <input type="text" placeholder="按下回车提示" @keyup.enter="showInfo">
+        <input type="text" placeholder="按下回车提示" @keyup.huiche="showInfo">
+    </div>
+    <!-- vue按键别名
+    回车 enter
+    删除 delete
+    退出 esc
+    空格 space
+    换行 tab 使用keydown ---ctrl shift alt meta 系统修饰键   keyup同时按下其他键随后释放其他键事件才触发
+    上 up
+    下 down
+    左 left
+    右 right
+    大写锁定键 caps-lock短横线命名 也可以使用按键原始的key值
+    也可以使用keyCode值
+    Vue.config.keyCodes.自定义键名 = 键码 定制按键别名
+    keyup.ctrl.y可以连续写
+ -->
+
+    <script type="text/javascript">
+    Vue.config.keyCodes.huiche = 13
+        new Vue({
+            el: '#root',
+            data() {
+                return {
+                    name: '尚硅谷'
+                }
+            },
+            methods: {
+                showInfo(e) {
+                    // if(e.keyCode !== 13)
+                    // return
+                    console.log(e.target.value)
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

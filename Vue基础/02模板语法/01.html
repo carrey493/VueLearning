@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h1>插值语法 {{name}}</h1>
+        <h1>插值语法 {{school.name}}</h1>
+        <hr />
+        <h3>指令语法</h3>
+        <a :href="url" :x="hello">百度</a>
+        <a :href="url.toUpperCase()" x="hello">百度</a>
+        <a :href="school.name" x="hello">百度</a>
+        <p>:绑定后字符串转变为表达式</p>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+        new Vue({
+            el: '#root', //用于指定当前Vue实例为哪个容器服务，值通常为css选择器符
+            data () {
+                return {
+                    name: 'hzd',
+                    age: '22',
+                    url: 'https://www.baidu.com',
+                    hello: 'world',
+                    school:{
+                        id: 1,
+                        name: 'xxx'
+                    }
+                }
+            }
+        });
+    </script>
+
+    
+</body>
+</html>

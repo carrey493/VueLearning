@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <h1>{{msg}}</h1>
+      <school></school>
+      <hello-world></hello-world>
+    </div>
+
+    <script type="text/javascript">
+      const school = Vue.extend({
+        //组价定义时，不写el配置项，因为最终所有的组件都要被一个vm管理，由vm决定服务于哪个容器
+        template: `
+        <div>
+          <h2>学校名称: {{schoolName}}</h2>
+          <h2>学校地址: {{address}}</h2> 
+          <button @click="tip">提示</button>
+        </div>
+        `,
+        data() {
+          return {
+            schoolName: "尚硅谷",
+            address: "武汉",
+          };
+        },
+        methods: {
+          tip() {
+            alert(this.schoolName);
+          },
+        },
+      });
+
+      const student = Vue.extend({
+        //组价定义时，不写el配置项，因为最终所有的组件都要被一个vm管理，由vm决定服务于哪个容器
+        name: "atguigu",
+        template: `
+        <div>
+          <h2>学生姓名: {{studentName}}</h2>
+          <h2>学生年龄: {{age}}</h2>
+        </div>
+        `,
+        data() {
+          return {
+            studentName: "jack",
+            age: 19,
+          };
+        },
+      });
+
+      const hello = Vue.extend({
+        template: `
+        <div>
+          <h3>{{message}}</h3>
+        </div>
+        `,
+        data() {
+          return {
+            message: "你好世界",
+          };
+        },
+      });
+
+      const helloWorld = {
+        template: `
+        <div>
+          <h3>{{message}}</h3>
+        </div>
+        `,
+        data() {
+          return {
+            message: "你好世界",
+          };
+        },
+      };
+
+      new Vue({
+        el: "#root",
+        data() {
+          return {
+            msg: "欢迎学习",
+          };
+        },
+        components: {
+          school: school,
+          "hello-world": hello,
+        },
+      });
+    </script>
+  </body>
+</html>

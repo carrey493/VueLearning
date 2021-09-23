@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>回顾Object.definepropertry方法</p>
+    <script>
+        let number = 32
+        let person ={
+            nam: 'zhangsan',
+            sex:'男',
+            height: '156', //直接输入可修改 可删除
+            size: number
+        }
+        console.log(person)
+
+        //关联
+        Object.defineProperty(person,'size',{
+                //当有人读取person的size属性时，get函数就会被调用(getter) 且返回值就是size的值
+                //size === ? --->getter
+                get () {
+                    console.log('有人读取属性')
+                    return number
+                },
+                //当有人修改person的size属性时，set函数就会被调用(setter) 且会收到修改的具体值
+                set () {
+                    console.log('有人修改')
+                    return number
+                }
+        })
+
+
+        //这种方法添加的值是不可以被枚举的(不参与遍历)
+        Object.defineProperty(person,'age',{
+            value: 18,
+        })
+        console.log(person)
+
+        Object.defineProperty(person,'foot',{
+            value: 18,
+            enumerable:true, //控制属性是否可以被枚举可列举的
+            //无法被修改
+
+            writable: true, //控制属性是否可以被修改
+            //不可被删除
+
+            configurable: true //控制属性是否可以被删除
+        })
+        console.log(person)
+
+        
+
+
+        //传入对象的所有属性的属性名提取出来作为一个数组
+        console.log(Object.keys(person))
+        
+        //for in 既能遍历数组又能遍历对象
+
+        for(let key in person) {
+            console.log('@',person[key])
+        }
+    </script>
+</body>
+</html>

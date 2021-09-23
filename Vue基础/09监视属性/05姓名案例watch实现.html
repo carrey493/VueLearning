@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="root">
+      姓：<input type="text" v-model="firstName" /> 名：<input
+        type="text"
+        v-model="lastName"
+      />
+      姓名： <span>{{fullName}}</span>
+    </div>
+
+    <script type="text/javascript">
+      
+      //区别   计算属性无法执行异步任务 侦听属性可以
+
+      const vm = new Vue({
+        el: "#root",
+        data() {
+          return {
+            firstName: "张",
+            lastName: "三",
+            fullName: '张-三'
+          };
+        },
+        methods: {},
+        computed: {},
+        watch:{
+          //侦听属性里的属性最好写成普通函数
+            firstName(newValue){
+              //定时器执行的回调是不受vue控制的
+              //是浏览器定时器模块控制的 js引擎到点调用 必须使用箭头函数
+              //当将函数写为箭头时定时器中的this指向firstName
+              setTimeout(() => {
+                this.fullName = newValue + this.lastName
+              },2000)
+                
+            },
+            lastName(newValue){
+                this.fullName = this.firstName + newValue
+            },
+        }
+      });
+
+      //不被vue所管理的函数定时器回调函数 ajax回调函数 Promise的回调函数 最好写成箭头函数
+      //这样的this才会指向vm
+    </script>
+  </body>
+</html>

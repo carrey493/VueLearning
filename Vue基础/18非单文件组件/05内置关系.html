@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+        <school></school>
+    </div>
+
+    <!-- 
+        1.一个重要的内置关系： VueComponent.prototype.__proto__ === Vue.prototype
+        2.为什么要有这个关系：让组件实例对象vc可以访问到Vue原型上的属性、方法
+     -->
+
+    <script type="text/javascript">
+      //定义一个构造函数
+      function Demo() {
+        this.a = 1;
+        this.b = 2;
+      }
+
+      //创建一个Demo的实例对象
+      const d = new Demo();
+
+      console.log(Demo.prototype); //显示原型属性
+      console.log(d.__proto__); //隐式原型属性
+      //只有函数才配拥有显示原型属性
+      //实例的隐式原型属性永远指向自己缔造者的原型对象
+
+      //通过显示原型属性操作原型对象追加一个x属性值为99
+      Demo.prototype.x = 99;
+
+      console.log(d.x);
+
+      Vue.prototype.x = 365
+
+      const school = Vue.extend({
+        //组价定义时，不写el配置项，因为最终所有的组件都要被一个vm管理，由vm决定服务于哪个容器
+        template: `
+        <div>
+          <h2>学校名称: {{schoolName}}</h2>
+          <h2>学校地址: {{address}}</h2> 
+          <button @click="tip">点我输出x</button>
+        </div>
+        `,
+        data() {
+          return {
+            schoolName: "尚硅谷",
+            address: "武汉",
+          };
+        },
+        methods: {
+          tip() {
+            alert(this.x);
+          },
+        },
+      });
+
+      //console.dir()可以显示一个对象所有的属性和方法。
+
+      new Vue({
+        el: "#root",
+        data() {
+          return {
+            msg: "你好",
+          };
+        },
+        components: {
+          school,
+        },
+      });
+    </script>
+  </body>
+</html>
