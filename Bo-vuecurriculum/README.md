@@ -270,7 +270,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ![image-20210912163332578](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912163332578.png)
 
-## 6.v-for
+### 6.v-for
 
 - 根据一组数组的选项列表进行渲染
 - 需要使用item in items形式的特殊语法，items是源数据数组并且 item是数组元素迭代的别名(foreach)
