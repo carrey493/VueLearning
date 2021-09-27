@@ -19,7 +19,7 @@
       </ul>
       <ul>
         <li>
-          指令
+          基本指令
           <ul>
             <li>
               <router-link to="/example04/01">text if show指令</router-link>
@@ -30,6 +30,15 @@
             <li>
               <router-link to="/example04/03">v-for</router-link>
             </li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>双向绑定</li>
+        <li>
+          <ul>
+            <li><router-link to="/example05">v-model双向绑定</router-link> </li>
+            <li><router-link to="">基于方法执行</router-link> </li>
           </ul>
         </li>
       </ul>

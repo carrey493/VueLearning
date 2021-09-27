@@ -312,11 +312,43 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 - 通过vue提供的全局方法实现数组的动态
 - 在指定索引增加/更新对象
-- ￥set(items, indexOfltem, newValue)
+- $set(items, indexOfltem, newValue)
 
 ![image-20210912172550626](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912172550626.png)
 
 - 响应式删除指定位置数组对象
-- ￥delete(items. indexOfltem)
+- $delete(items. indexOfltem)
 
 ![image-20210912173031883](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210912173031883.png)
+
+## 11.Form&Input&Bindings
+
+### 1.Event Handing
+
+- v-on指令监听DOM事件,并在触发时运行指定程序
+- 绑定组件实例的,methods属性中声明的方法
+- 缩写,例如:v-on:click，可缩写为@click
+
+![image-20210925225429676](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210925225429676.png)
+
+### 2.Form Input Bindings
+
+- V-model指令在表单元素上创建双向数据绑定
+- 它会根据控件类型自动选取正确的方法来更新元素
+- v-model本质上是语法糖,它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理
+- v-model会忽略所有表单元素的value、checked、selected特性的初始值，而总是将Vue实例的数据作为数据来源。
+- 应该通过JavaScript在组件的data ()中声明初始值
+
+![image-20210925235835160](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210925235835160.png)
+
+![image-20210927231431278](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210927231431278.png)
+
+![image-20210927231652118](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210927231652118.png)
+
+![image-20210927231702037](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20210927231702037.png)
+
+- event，当前事件对象，可作为方法参数
+- event.target，当前事件html元素对象
+- event.target.propertyname，当前元素属性对应的值,例如
+  - event.target.value，当前元素的值
+  - event. target.selectedIndex，当前select元素选择的option的索引

@@ -18,6 +18,7 @@ const routes = [
   },
   {
     props: true,
+    name:'Example03',
     path: '/example03/students/:sid/homeworks/:hid',
     component: () => import('@/views/example03/Example03.vue'),
   },
@@ -42,6 +43,11 @@ const routes = [
         component: () => import('@/views/example04/Example04-03.vue'),
       },
     ],
+  },
+  {
+    name:'Example05',
+    path: '/example05',
+    component: () => import('../views/example05/Example05.vue'),
   },
 ]
 
