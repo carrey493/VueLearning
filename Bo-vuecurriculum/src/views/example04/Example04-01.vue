@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="flag">
     <h1>v-text</h1>
     <p>
       <span v-text="message"></span>
@@ -26,11 +26,22 @@
 export default {
   data() {
     return {
+      flag:true,
       message: 'hello world',
       admin: true,
       userNameLogin: true,
       user: { username: 'Bo', level: 'admin' },
       close: true,
+    }
+  },
+  watch:{
+    $route:{
+      immediate: true,
+      handler(newV){
+        if(newV.path !== '/example04/01'){
+          this.flag = false
+        }
+      }
     }
   },
   methods: {

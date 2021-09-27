@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="flag">
     <h1>v-bind</h1>
     <p>
       <label>
@@ -27,8 +27,19 @@
 export default {
   data() {
     return {
+      flag:true,
       enable: true,
       active: false,
+    }
+  },
+   watch:{
+    $route:{
+      immediate: true,
+      handler(newV){
+        if(newV.path !== '/example04/02'){
+          this.flag = false
+        }
+      }
     }
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="flag">
     <h1>v-for</h1>
     <ul>
       <li v-for="h in homeworks" :key="h.id">
@@ -37,6 +37,7 @@
 export default {
   data() {
     return {
+       flag:true,
       homeworks: [
         {
           id: 0,
@@ -54,6 +55,16 @@ export default {
           deadline: '2019-04-10T11:00',
         },
       ],
+    }
+  },
+   watch:{
+    $route:{
+      immediate: true,
+      handler(newV){
+        if(newV.path !== '/example04/03'){
+          this.flag = false
+        }
+      }
     }
   },
   computed: {
