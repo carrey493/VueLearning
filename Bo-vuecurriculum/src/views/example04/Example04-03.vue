@@ -37,7 +37,7 @@
 export default {
   data() {
     return {
-       flag:true,
+      flag: true,
       homeworks: [
         {
           id: 0,
@@ -57,15 +57,15 @@ export default {
       ],
     }
   },
-   watch:{
-    $route:{
+  watch: {
+    $route: {
       immediate: true,
-      handler(newV){
-        if(newV.path !== '/example04/03'){
+      handler(newV) {
+        if (newV.path !== '/example04/03') {
           this.flag = false
         }
-      }
-    }
+      },
+    },
   },
   computed: {
     formatDate() {
