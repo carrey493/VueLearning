@@ -27,20 +27,20 @@
 export default {
   data() {
     return {
-      flag:true,
+      flag: true,
       enable: true,
       active: false,
     }
   },
-   watch:{
-    $route:{
+  watch: {
+    $route: {
       immediate: true,
-      handler(newV){
-        if(newV.path !== '/example04/02'){
+      handler(newV) {
+        if (newV.path !== '/example04/02') {
           this.flag = false
         }
-      }
-    }
+      },
+    },
   },
   methods: {
     setAgree() {

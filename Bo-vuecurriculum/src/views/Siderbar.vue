@@ -37,8 +37,8 @@
         <li>双向绑定</li>
         <li>
           <ul>
-            <li><router-link to="/example05">v-model双向绑定</router-link> </li>
-            <li><router-link to="">基于方法执行</router-link> </li>
+            <li><router-link to="/example05">v-model双向绑定</router-link></li>
+            <li><router-link to="">基于方法执行</router-link></li>
           </ul>
         </li>
       </ul>

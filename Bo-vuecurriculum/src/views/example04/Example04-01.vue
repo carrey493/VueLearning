@@ -26,7 +26,7 @@
 export default {
   data() {
     return {
-      flag:true,
+      flag: true,
       message: 'hello world',
       admin: true,
       userNameLogin: true,
@@ -34,15 +34,15 @@ export default {
       close: true,
     }
   },
-  watch:{
-    $route:{
+  watch: {
+    $route: {
       immediate: true,
-      handler(newV){
-        if(newV.path !== '/example04/01'){
+      handler(newV) {
+        if (newV.path !== '/example04/01') {
           this.flag = false
         }
-      }
-    }
+      },
+    },
   },
   methods: {
     changeInput() {
