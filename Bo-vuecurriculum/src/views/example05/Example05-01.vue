@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div v-if="flag">
     <h1>Form Binding</h1>
-    <form action="">uesr
+    <form action="">
+      uesr
       <input type="text" v-model="user.name" />
       <br />
       <label for="">
@@ -15,7 +16,7 @@
       </label>
       <br />
       <select name="" id="" v-model="user.title">
-        <option v-for="(t, index) in titles" :key="index" :value="{id: t.id}">
+        <option v-for="(t, index) in titles" :key="index" :value="{ id: t.id }">
           {{ t.name }}
         </option>
       </select>
@@ -30,7 +31,7 @@
           />
           {{ c.name }}
         </label>
-        <br :key="`br-${index}`">
+        <br :key="`br-${index}`" />
       </template>
       <button @click="submit" type="button">提交</button>
     </form>
@@ -48,6 +49,7 @@
 export default {
   data() {
     return {
+      flag: true,
       user: {
         name: null,
         sex: null,
@@ -67,18 +69,30 @@ export default {
       ],
     }
   },
+  watch: {
+    $route: {
+      immediate: true,
+      handler(newV) {
+        if (newV.path !== '/example05/01') {
+          this.flag = false
+        }
+      },
+    },
+  },
   methods: {
     submit() {
-      console.log(this.user);
+      console.log(this.user)
       alert('确定提交吗？')
     },
     fileChange(event) {
-      console.log(event.target.files[0]);
+      console.log(event.target.files[0])
       this.file = event.target.files[0]
     },
   },
 }
 </script>
-
 <style>
+p {
+  font-weight: 500;
+}
 </style>

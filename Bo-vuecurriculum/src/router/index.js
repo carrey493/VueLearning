@@ -18,7 +18,7 @@ const routes = [
   },
   {
     props: true,
-    name:'Example03',
+    name: 'Example03',
     path: '/example03/students/:sid/homeworks/:hid',
     component: () => import('@/views/example03/Example03.vue'),
   },
@@ -45,9 +45,21 @@ const routes = [
     ],
   },
   {
-    name:'Example05',
+    name: 'Example05',
     path: '/example05',
     component: () => import('../views/example05/Example05.vue'),
+    children: [
+      {
+        path: '/example05/01',
+        name: 'bindings',
+        component: () => import('@/views/example05/Example05-01.vue'),
+      },
+      {
+        path: '/example05/02',
+        name: 'v-model',
+        component: () => import('@/views/example05/Example05-02.vue'),
+      },
+    ],
   },
 ]
 
