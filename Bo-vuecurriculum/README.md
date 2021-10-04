@@ -352,3 +352,16 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - event.target.propertyname，当前元素属性对应的值,例如
   - event.target.value，当前元素的值
   - event. target.selectedIndex，当前select元素选择的option的索引
+
+## 12.V-model+Example
+
+![image-20211004215837619](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211004215837619.png)
+
+![image-20211004220056237](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211004220056237.png)
+
+### 1.Watch
+
+- 虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器
+- Vue通过watch选项提供了一个更通用的方法，来响应数据的变化。当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的
+
+![image-20211004220200824](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211004220200824.png)
