@@ -61,6 +61,28 @@ const routes = [
       },
     ],
   },
+  {
+    name: 'Example06',
+    path: '/example06',
+    component: () => import('../views/example06/Example06.vue'),
+    children: [
+      {
+        path: '/example06/01',
+        name: 'Basic binding',
+        component: () => import('@/views/example06/Example06-01.vue'),
+      },
+      {
+        path: '/example06/02',
+        name: 'Synchronous binding',
+        component: () => import('@/views/example06/Example06-02.vue'),
+      },
+      {
+        path: '/example06/03',
+        name: 'Asynchronous binding',
+        component: () => import('@/views/example06/Example06-03.vue'),
+      },
+    ],
+  },
 ]
 
 const router = new VueRouter({

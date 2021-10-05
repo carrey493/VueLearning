@@ -365,3 +365,63 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - Vue通过watch选项提供了一个更通用的方法，来响应数据的变化。当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的
 
 ![image-20211004220200824](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211004220200824.png)
+
+## 13.Vuex
+
+- state，驱动应用的状态(数据)
+- view,以声明方式将state映射到视图
+- actions，响应在 view上的用户输入导致的状态变化
+
+![image-20211004222545511](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211004222545511.png)
+
+- 但是，当应用遇到多个组件共享数据状态时，单向数据流的简洁性很容易被破坏:
+  - 多个视图依赖于同一状态
+  - 来自不同视图的行为需要变更同一状态
+- 问题一，传参的方法对于多层嵌套的组件将会非常繁琐，并且对于兄弟组件间的状态传递无能为力
+- 问题二，我们经常会采用父子组件直接引用或者通过事件来变更和同步状态的多份考贝。
+- 以上的这些模式非常脆弱,通常会导致无法维护的代码
+- 因此，我们为什么不把组件的共享状态抽取出来，以一个全局单例模式管理呢?在这种模式下，我们的组件树构成了一个巨大的“视图”，不管在树的哪个位置,任何组件都能获取状态或者触发行为!
+- 通过定义和隔离状态管理中的各种概念并通过强制规则维持视图和状态间的独立性,我们的代码将会变得更结构化且易维护。
+
+### 1.Vuex
+
+- Vuex是为Vue.js应用程序的状态管理模式，米用集中式存储管理应用的所有组件需要的数据状态
+- Vuex作为一个“唯一数据源(SSOT)”存在。这也意味着，每个应用将仅包含一个store实例
+- store/index.js，vuex声明配置
+- 基于vuex实现，V与数据源的绑定,同步/异步更新
+- https://vuex.vuejs.org/zh/
+- State，数据状态(数据源)。声明全局响应式状态
+- Mutations，同步,更新state数据的事件
+- Actions，异步,通知mutations更新state数据的事件
+- Modules，多模块store整合
+
+![image-20211004232215264](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211004232215264.png)
+
+- State的绑定
+- 与router对象相似，vue在根组件注入是store对象,因此在当前vue组件直接获得,通过计算属性绑定
+- 当store中绑定数据改变时,重新计算响应式改变
+
+![image-20211004232437268](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211004232437268.png)
+
+- 基于vuex的mapState辅助函数，声明绑定计算属性
+
+![image-20211004232538881](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211004232538881.png)
+
+- Mutations，同步，更新state数据的事件
+- 是声明/注册了一个事件，不是一个方法。当事件被激活，自动注入state,以及事件传入的参数
+- commit()激活同步事件
+- 不支持网络等异步操作
+
+![image-20211005210554651](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211005210554651.png)
+
+![image-20211005210620372](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211005210620372.png)
+
+- Actions，异步，通知mutations更新state数据的事件
+- 是声明/注册了一个支持异步操作的事件
+- dispatch()方法激活异步事件
+  当事件被激活，自动注入的commit，以及事件传入的参数
+- 仍需基于同步事件更新state数据状态
+- 用于网络等异步操作
+
+![image-20211005211717615](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211005211717615.png)
+
