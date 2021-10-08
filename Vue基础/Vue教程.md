@@ -1751,3 +1751,29 @@ const personsOptions = {
 - 每个组件都有自己的$route属性，里面存储着自己的路由信息
 - 整个应用只有一个router,可以通过组价的$router属性获取到
 
+### 5.多级路由
+
+- 配置路由规则。使用children配置项：
+
+```js
+{
+    path:'/home',
+        component:Home,
+            children:[
+                {
+                    path:'news',
+                    component:News
+                },
+                {
+                    path:'message',
+                    component:Message
+                },
+            ]
+}
+```
+
+- 跳转（要写完整路由）
+
+```js
+<router-link class="list-group-item " active-class="acive" to="/home/news">News</router-link>
+```
