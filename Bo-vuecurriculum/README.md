@@ -425,3 +425,47 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ![image-20211005211717615](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211005211717615.png)
 
+## 14.Axios&Mock
+
+### 1.Axios
+
+- Promise based HTTP client for the browser and node.js
+- 支持Promise的http请求库。Promise，ES6异步编程解决方案，比传统的回调函数和事件更合理更强大
+- 基于ES7 Async/await更优雅的异步解决方案
+- 支持HTTP get/post/put/patch/delete等请求类型
+- 支持拦截器等
+- 在项目下,安装axios npm i axios
+- https://github.com/axios/axios
+- 创建自定义axios文件，添加配置后，暴露
+
+![image-20211005234320570](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211005234320570.png)
+
+![image-20211005234354942](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211005234354942.png)
+
+### 2.Mock
+
+- 前端通过模拟数据,编写测试,实现独立于后端的开发
+- 多种支持接收Ajax请求并返回模拟数据的库
+  - Mockjs。支持模拟随机数/姓名/日期/email/图片/请求延迟等。但不支持模拟header，以及http状态码
+  - axios-mock-adapter。支持模拟header，http状态码。但仅支持固定而非随机的模拟数据
+- 模拟数据请求库仅用于开发测试环境,无需在生产环境下编译打包。因此安装在项目开发环境下。会声明在package.json下开发环境依赖devDependencies中。
+- 在项目下,安装npm i axios-mock-adapter -d
+- https://github.com/ctimmerm/axios-mock-adapter
+- 创建src/mock/index.,js文件，配置并模拟请求处理及响应数据
+
+![image-20211010171909512](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211010171909512.png)
+
+- 在入口src/main.js，判断当前环境，仅在开发环境下引入。生产环境下编译打包时,不会执行
+
+![image-20211010171952350](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211010171952350.png)
+
+- /users/4/homeworks/21
+- JS正则表达式，简单替换规则
+- 将所有，/反斜杠,添加转义符替换\/;任意字符替换为\w+，添加结束符匹配$;整体置于//，之间
+
+![image-20211010172209047](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211010172209047.png)
+
+![image-20211010172228059](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211010172228059.png)
+
+![image-20211010172320468](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211010172320468.png)
+

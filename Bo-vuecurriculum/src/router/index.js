@@ -83,6 +83,18 @@ const routes = [
       },
     ],
   },
+  {
+    name: 'Example07',
+    path: '/example07',
+    component: () => import('../views/example07/Example07.vue'),
+    children: [
+      {
+        path: '/example07/01',
+        name: 'Axios basic request',
+        component: () => import('@/views/example07/Example07-01.vue'),
+      },
+    ],
+  },
 ]
 
 const router = new VueRouter({

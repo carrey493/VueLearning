@@ -50,6 +50,10 @@
         <li><router-link to="/example06/02">同步绑定</router-link></li>
         <li><router-link to="/example06/03">异步绑定</router-link></li>
       </ul>
+      <ul>
+        <li>Axios</li>
+        <li><router-link to="/example07/01">基本请求</router-link></li>
+      </ul>
     </ul>
   </div>
 </template>
