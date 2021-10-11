@@ -1805,3 +1805,94 @@ $route.query.id
 $route.query.title
 ```
 
+### 7.命名路由
+
+- 作用：可以简化路由的跳转
+
+- 如何使用：
+
+  - 给路由命名
+
+    ```js
+    {
+    name: "about",
+    path: "/about",
+    component: About,
+    },
+    ```
+
+  - 简化跳转
+
+  ```js
+  <router-link
+  class="list-group-item"
+  active-class="active"
+  :to="{ name: 'about' }"
+  >About</router-link
+  >
+  ```
+
+### 8.路由的params参数
+
+- 配置路由，声明接收params参数
+
+```js
+{
+path: "message",
+component: Message,
+children: [
+{
+name: "detail",
+path: "detail/:id/:title",
+component: Detail,
+},
+],
+},
+```
+
+- 传递参数
+
+```js
+<router-link :to="`/home/message/detail/${m.id}/${m.title}`">{{ m.title }}</router-link>
+<router-link
+:to="{
+name: 'detail',//不允许写path必须写name
+params: {
+id: m.id,
+title: m.title,
+},
+}"
+>{{ m.title }}</router-link
+>
+```
+
+- 特别注意：路由携带params参数时，若使用to对象的写法，则不能使用path配置项，必须使用name配置。
+- 接收参数
+
+```js
+$route.params.id
+$route.params.title
+```
+
+### 9.路由的props配置
+
+```js
+{
+name: "detail",
+path: "detail/:id/:title", //使用占位符声明接收params参数
+component: Detail,
+//props第一种写法值为对象，该对象中所有的key-value都会以props的形式传给detail组件
+/* props: {
+a: 1,
+b: "hello",
+}, */
+//props第二种写法值为布尔值，若布尔值为真，就会把该组件收到的所有params参数，以props的形式传给detail组件
+/* props: true, */
+//props第三种写法值为函数
+props($route) {
+//{params:{id,title}}
+return { id: $route.params.id, title: $route.params.title };
+//return {id,title}
+}
+```
+
