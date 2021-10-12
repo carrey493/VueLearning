@@ -1936,3 +1936,16 @@ pushShow(m) {
 - go:可以实现多步跳转正数为向前跳转几步，负数为向后跳转几步
 - back:向后退一步
 - forward:向前进一步
+
+### 12.缓存路由组件
+
+- 作用：让不展示的路由组件保持挂载，不被销毁
+- 实现：
+
+```js
+<keep-alive include="News">
+<!-- 组件名 -->
+	<router-view></router-view>
+</keep-alive>
+```
+
