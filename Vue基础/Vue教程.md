@@ -1896,3 +1896,43 @@ return { id: $route.params.id, title: $route.params.title };
 }
 ```
 
+### 10.router-link的replace属性
+
+- 作用：控制路由跳转时操作浏览器历史纪录的模式
+- 浏览器的历史记录有两种写入方式：分别为push和replace，push是追加历史记录，replace是替换当前记录。路由跳转的时候默认为push
+- 如何开启replace模式：
+
+```js
+<router-linkreplace:to="{ name: 'about' }">About</router-link>
+```
+
+### 11.编程式路由导航
+
+- 作用：不借助router-link实现路由跳转，让路由跳转更灵活
+- 实现
+
+```js
+pushShow(m) {
+      //console.log(this.$router);
+      this.$router.push({
+        name: "detail",
+        params: {
+          id: m.id,
+          title: m.title,
+        },
+      });
+    },
+    replaceShow(m){
+      this.$router.replace({
+        name: "detail",
+        params: {
+          id: m.id,
+          title: m.title,
+        },
+      });
+    }
+```
+
+- go:可以实现多步跳转正数为向前跳转几步，负数为向后跳转几步
+- back:向后退一步
+- forward:向前进一步
