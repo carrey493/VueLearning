@@ -1955,3 +1955,40 @@ pushShow(m) {
 - 具体名字
   - activated:路由组件被激活时触发
   - deactived：路由组件失活是触发
+
+### 14.路由守卫
+
+- 作用：对路由进行权限控制
+- meta:路由元信息，配置title等信息，可以用来判断路由的跳转以及权限·验证等功能。
+- 分类：全局守卫、独享守卫、组件内守卫
+- 全局守卫
+
+```js
+//全局前置路由导航守卫，初始化和每次路由切换之前调用
+router.beforeEach((to,from,next)=>{
+  console.log('前置路由导航守卫',to,from);
+  // 可选择path与name进行判断
+  // if(to.path ==='/home/news' || to.path === '/home/message')
+  //判断是否需要鉴别权限
+  if(to.meta.isAuth){
+    if(localStorage.getItem('school') === 'atguigu'){
+      // document.title = to.meta.title || '硅谷'
+      next()
+    }
+     else {
+      alert('学校名不对，无权限查看。')
+    }
+  }
+  else {
+    // document.title = to.meta.title || '硅谷'
+    next()
+  }
+})
+
+//全局后置路由导航守卫，初始化和每次路由切换之后调用
+router.afterEach((to,from)=>{
+  console.log('后置路由守卫',to,from);
+  document.title = to.meta.title || '硅谷'
+})
+```
+
