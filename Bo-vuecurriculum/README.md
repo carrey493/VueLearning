@@ -469,3 +469,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ![image-20211010172320468](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211010172320468.png)
 
+## 15.整合Vuex&Axios&Mock
+
+- Repository层，service层，ViewModel层
+- 已知前后端互交接口(restful APIs)，编写mock拦截请求模拟数据
+- 已知互交接口的数据约定(payload，发送/接收json属性)，编写vuex中需要的state;以及异步actions事件，基于axios发送网络请求，将数据更新到state，或直接返给组件(响应数据无需与多组件共享)
+- 已知异步事件,编写组件，created回调发送异步请求，视图模板绑定state数据,或直接等待异步数据渲染;添加router导航
+- 示例
+  -  /homeworks
+  - homeworks/{ hid}
+- 没有设计,就用到哪写到哪

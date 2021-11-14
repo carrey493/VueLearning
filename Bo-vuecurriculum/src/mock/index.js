@@ -48,3 +48,15 @@ mock.onPost('/login').reply((config) => {
     },
   ]
 })
+
+mock.onGet(path('/homeworks')).reply(200, {
+  homeworks: [
+    { id: 1, name: 'java1', deadline: '2021-10' },
+    { id: 2, name: 'java2', deadline: '2021-11' },
+    { id: 3, name: 'java3', deadline: '2021-12' },
+  ],
+})
+
+mock.onGet(path('/homework/{hid}')).reply(200, {
+  homework: { id: 1, name: 'java1', deadline: '2021-10' },
+})

@@ -52,7 +52,10 @@
       </ul>
       <ul>
         <li>Axios</li>
-        <li><router-link to="/example07/01">基本请求</router-link></li>
+        <li>
+          <router-link to="/example07/01">基本请求及mock数据</router-link>
+        </li>
+        <li><router-link to="/example07/02">homeworks</router-link></li>
       </ul>
     </ul>
   </div>
