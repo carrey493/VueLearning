@@ -479,3 +479,33 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   -  /homeworks
   - homeworks/{ hid}
 - 没有设计,就用到哪写到哪
+
+## 16.Communication between components
+
+- 父组件向子组件传递数据,可以通过在子组件中定义props属性,传入数据
+- 子组件向父组件传递数据，子组件不应直接改变父组件的数据，必须通过vuex/事件,通知父组件改变(解耦,单向依赖)
+- 不同层次间组件的通信，组件应是没有耦合的彼此独立的单元，因此组件间不应形成依赖
+- 因此,vue组件间的通信,应通过
+  - Global Event Bus
+  -  Vuex
+
+### 1.props
+
+- 子组件中定义props属性,由父组件传入数据
+
+![image-20211121231534690](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211121231534690.png)
+
+- 父组件引入子组件，v-bind绑定子组件中属性
+
+![image-20211121231244669](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211121231244669.png)
+
+### 2.Why Listeners in HTML?
+
+- 这种事件监听的方式违背了关注点分离(separation of concern)这个长期以来的原则
+- 但所有Vue事件处理方法和表达式都严格绑定在当前视图的ViewModel上，它不会导致任何维护上的困难
+- 实际上,使用v-on有几个好处:
+  - HTML模板便能轻松定位在代码里对应的方法
+  - 无须在 JavaScript里手动绑定事件，ViewModel代码是纯粹的逻辑，和DOM完全解耦,更易于测试
+  - 当一个ViewModel被销毁时，所有的事件处理器都会自动被删除，无须担心内存占用
+
+![image-20211121232818299](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211121232818299.png)

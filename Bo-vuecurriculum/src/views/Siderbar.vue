@@ -57,6 +57,10 @@
         </li>
         <li><router-link to="/example07/02">homeworks</router-link></li>
       </ul>
+      <ul>
+        <li>父子组件传值</li>
+        <li><router-link to="/example08">父组件向子组件传值</router-link></li>
+      </ul>
     </ul>
   </div>
 </template>

@@ -105,6 +105,11 @@ const routes = [
       },
     ],
   },
+  {
+    name: 'Example08',
+    path: '/example08',
+    component: () => import('@/views/example08/example08-01.vue'),
+  },
 ]
 
 const router = new VueRouter({
