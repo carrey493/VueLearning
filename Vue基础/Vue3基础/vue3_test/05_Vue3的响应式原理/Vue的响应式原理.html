@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let person = {
+        name: "zhangsan",
+        age: 18,
+      };
+
+      //模拟Vue2中实现响应式
+      /* let p = {};
+      Object.defineProperty(p, "name", {
+        configurable: true,
+        get() {
+          return person.name;
+        },
+        set(value) {
+          person.name = value;
+        },
+      });
+      Object.defineProperty(p, "age", {
+        get() {
+          return person.age;
+        },
+        set(value) {
+          person.age = value;
+        },
+      }); */
+
+      //模拟Vue3中实现响应式
+      const p = new Proxy(person, {
+        //读取属性
+        get(target, propName) {
+          console.log("读取propName属性", target, propName);
+          return Reflect.get(target[propName]);
+        },
+        //修改追加属性
+        set(target, propName, value) {
+          console.log("修改propName属性", target, propName, value);
+          // target[propName] = value;
+          Reflect.set(target,propName,value)
+        },
+        //删除属性
+        deleteProperty(target, propName) {
+          console.log("删除propName属性", target, propName);
+          // return delete target[propName];
+          return Reflect.deleteProperty(target,propName)
+        },
+      });
+      let obj = { a: 1, b: 2 };
+      //通过Object.defineProperty去操作
+      /* Object.defineProperty(obj, "c", {
+        get() {
+          return 4;
+        },
+      }); */
+      //通过Reflect反射对象去操作
+      /* const x1 = Reflect.defineProperty(obj,'c',{
+        get(){
+          return 3
+        }
+      })//true
+      const x2 = Reflect.defineProperty(obj,'c',{
+        get(){
+          return 4
+        }
+      })//false */
+    </script>
+  </body>
+</html>

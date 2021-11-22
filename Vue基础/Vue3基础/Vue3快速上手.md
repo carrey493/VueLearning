@@ -152,3 +152,58 @@ npm run dev
 **reactive定义的响应式数据是‘深层次的’**
 
 **内部基于ES6的Proxy实现，通过代理对象操作源对象内部数据进行操作**
+
+## 4.Vue3.0中的响应式原理
+
+### 1.Vue2.x的响应式
+
+#### 1.实现原理
+
+- 对象类型：通过object.defineProperty()对属性的读取、修改进行拦截（数据劫持）
+- 数组类型：通过重写更新数组的一系列方法来实现拦截。（对数组的方法进行了包裹）
+
+```js
+object.defineProperty(data,'count',{
+    get(){},
+    set(){}
+})
+```
+
+#### 2.存在问题
+
+- 新增属性、删除属性，界面不会更新
+- 直接通过下摆哦修改数组，界面不会自动更新
+
+### 2.Vue3.0的响应式原理
+
+- 实现原理
+
+  - 通过Proxy（代理）：拦截对象中任意属性的变化，包括：属性值的读写、属性的添加、属性的删除等
+
+  - 通过Reflect（反射）：对被代理对象的属性进行操作
+
+  - MDN中描述的Proxy与Reflect
+
+    - Proxy https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+    - Reflect https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect
+
+    ```js
+    new Proxy(person, {
+            //读取属性
+            get(target, propName) {
+              return Reflect.get(target[propName]);
+            },
+            //修改追加属性
+            set(target, propName, value) {
+              Reflect.set(target,propName,value)
+            },
+            //删除属性
+            deleteProperty(target, propName) {
+              return Reflect.deleteProperty(target,propName)
+            },
+          });
+    ```
+
+    
+
+    
