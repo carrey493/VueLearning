@@ -60,3 +60,23 @@ mock.onGet(path('/homeworks')).reply(200, {
 mock.onGet(path('/homework/{hid}')).reply(200, {
   homework: { id: 1, name: 'java1', deadline: '2021-10' },
 })
+
+mock.onPost('login').reply((c) => {
+  //此时请求的json已经转为字符串，不是json对象，因此需要转换回来
+  let data = c.data
+  let user = JSON.parse(data)
+  let result = [401, { message: '用户名密码错误' }]
+  if (user.number === '1001' && user.password === '123456') {
+    console.log(user.number)
+    result = [
+      200,
+      {
+        role: '987654321',
+      },
+      {
+        Authorization: '1a2a3a4a5s6s7e8re',
+      },
+    ]
+  }
+  return result
+})

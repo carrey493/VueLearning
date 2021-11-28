@@ -110,6 +110,11 @@ const routes = [
     path: '/example08',
     component: () => import('@/views/example08/example08-01.vue'),
   },
+  {
+    name: 'Example09',
+    path: '/example09',
+    component: () => import('@/views/example09/example09-01.vue'),
+  },
 ]
 
 const router = new VueRouter({

@@ -61,6 +61,10 @@
         <li>父子组件传值</li>
         <li><router-link to="/example08">父组件向子组件传值</router-link></li>
       </ul>
+      <ul>
+        <li>Axios拦截器</li>
+        <li><router-link to="/example09">Axios响应/请求拦截器</router-link></li>
+      </ul>
     </ul>
   </div>
 </template>

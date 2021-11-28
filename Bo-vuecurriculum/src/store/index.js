@@ -12,6 +12,9 @@ const myState = {
   },
   homeworks: [],
   homework: {},
+  exception: {
+    message: null,
+  },
 }
 const myMutations = {
   [types.UPDATEUESR](state, data) {
@@ -22,6 +25,9 @@ const myMutations = {
   },
   [types.GET_HOMEWORK](state, data) {
     state.homework = data
+  },
+  [types.GET_EXCEPTION](state, data) {
+    state.exception = data
   },
 }
 const myActions = {
@@ -42,6 +48,9 @@ const myActions = {
     let resp = await axios.get(`homework/${data.hid}`)
     // commit(types.GET_HOMEWORK, resp.data.homework)
     return Promise.resolve(resp.data.homework)
+  },
+  async [types.LOGIN]({ commit }, data) {
+    let resp = await axios.post('login', data)
   },
 }
 
