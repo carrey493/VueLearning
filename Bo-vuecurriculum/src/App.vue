@@ -5,6 +5,7 @@
       <router-view id="router" :key="$route.path" />
     </keep-alive> -->
     <router-view id="router" :key="$route.path" />
+    <alertDialog />
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import Siderbar from './views/Siderbar.vue'
 export default {
   components: {
     Siderbar,
+    alertDialog: () => import('@/components/AlertDialog.vue'),
   },
 }
 </script>
@@ -22,7 +24,6 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  margin-top: 20px;
 }
 #siderbar {
   width: 300px;

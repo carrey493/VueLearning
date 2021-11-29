@@ -509,3 +509,26 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
   - 当一个ViewModel被销毁时，所有的事件处理器都会自动被删除，无须担心内存占用
 
 ![image-20211121232818299](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211121232818299.png)
+
+## 17.Axios Interceptors
+
+- Axios支持请求与响应拦截器。即，在请求发出前，响应返回后，先进入
+  拦截器
+- 请求拦截器。2个函数参数，成功发出请求回调函数，错误请求回调函数
+
+![image-20211129000230230](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211129000230230.png)
+
+- 响应拦截器。2个函数参数，成功返回响应回调函数，200状态码回调;
+  错误响返回应回调函数，非200状态码时回调
+
+![image-20211129000300142](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211129000300142.png)
+
+- 模拟登录，返回401及错误信息
+- 声明全局弹窗组件;监听异常信息改变，执行/激活alert
+- 使用UI框架模态框的实现更好
+
+![image-20211129000406455](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211129000406455.png)
+
+![image-20211129000442382](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211129000442382.png)
+
+![image-20211129000504071](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211129000504071.png)
