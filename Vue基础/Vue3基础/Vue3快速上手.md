@@ -235,3 +235,89 @@ object.defineProperty(data,'count',{
   - attrs:值为对象，包含：组件外部传递过来，但没有在props配置中声明的属性，相当于this.$attrs
   - slots:收到的插槽内容，相当于this.$slots
   - emit:分发自定义事件的函数，相当于this.$emit
+
+## 7.计算属性与监视
+
+### 1.computed函数
+
+- 与Vue2.x中computed配置功能一直
+- 写法
+
+```js
+import {computed} from 'vue'
+setup(){
+    //计算属性-简写
+    let fullName = computed(()=>{
+        return person.firstName + '-' + person.lastName
+    })
+    //计算属性-完整
+    let fullName = computed({
+        get(){
+            return person.firstName + '-' + person.lastName
+        },
+        set(value){
+            const nameArr = value.split('-')
+            person.firstName = nameArr[0]
+            person.lastName = nameArr[1]
+        }
+    })
+}
+```
+
+### 2.watch函数
+
+- 与Vue2.x中watch配置功能一致
+- 两个'小坑'
+  - 监视reactive定义的响应式数据时：oldvalue无法正确获取、强制开启了深度监视 deep配置失效
+  - 监视reactive定义的响应式数据中的某个属性时：deep配置有效
+
+```js
+//一、监视ref所定义一个的响应式数据
+    watch(
+      sum,
+      (n, o) => {
+        console.log("sum变了", n, o);
+      },
+      { immediate: true }
+    );
+    //二、监视ref所定义多个的响应式数据
+    watch(
+      [sum, msg],
+      (n, o) => {
+        console.log("sum或msg变了", n, o);
+      },
+      { immediate: true }
+    );
+    /* 
+    三、监视reactive所定义一个的响应式数据的全部属性,
+    注意 1.此处无法正确获得oldValue
+         2.强制开启了深度监视 deep配置无效
+    */
+    watch(person, (n, o) => {
+      console.log("person变化了", n, o);
+    });
+    /* 
+    四·监视reactive所定义一个的响应式数据的某个属性,
+    */
+    watch(
+      () => person.age,
+      (n, o) => {
+        console.log("person的age变化了", n, o);
+      }
+    );
+    /* 
+    五·监视reactive所定义多个的响应式数据,
+    */
+    watch([() => person.name, () => person.age], (n, o) => {
+      console.log("name或age变了", n, o);
+    });
+    /* 六.特殊情况 */
+    watch(
+      [() => person.job],
+      (n, o) => {
+        console.log("job改变了", n, o);
+      },
+      { deep: true } //监视的是reactive元素定义的对象中的某个属性 所以deep配置有效
+    );
+```
+
