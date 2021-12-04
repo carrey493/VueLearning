@@ -341,4 +341,22 @@ setup(){
   })
   ```
 
-  
+
+## 8.生命周期
+
+![image-20211204163752832](https:aidida.com/img/image-20211204163752832.png)
+
+![image-20211204163910960](https:aidida.com/img/image-20211204163910960.png)
+
+- Vue3.0中可以继续使用Vue2.x中的生命周期钩子，但有两个被更名
+  - beforeDestroy 改名为 beforeUnmount
+  - destroyed改名为unmounted
+- Vue3.0也提供了Composition API形式的生命周期钩子，与Vue2.x中钩子对应的关系如下
+  - beforCreate-->setup()
+  - created--->setup()
+  - beforeMount-->onBeforeMount
+  - mounted-->onMounted
+  - beforeUpdate-->onBeforeUpdate
+  - updated-->onUpdated
+  - beforeUnmount-->onBeforeUnmount
+  - unmounted-->onUnmounted
