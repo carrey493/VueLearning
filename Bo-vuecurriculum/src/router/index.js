@@ -115,6 +115,19 @@ const routes = [
     path: '/example09',
     component: () => import('@/views/example09/example09-01.vue'),
   },
+  {
+    name: 'Example10',
+    path: '/example10',
+    props: true,
+    component: () => import('@/views/example10/example10-01.vue'),
+    children: [
+      {
+        props: true,
+        path: 'homeworks/:hid',
+        component: () => import('@/views/example10/Homework.vue'),
+      },
+    ],
+  },
 ]
 
 const router = new VueRouter({
