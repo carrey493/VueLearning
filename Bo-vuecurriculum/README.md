@@ -532,3 +532,16 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ![image-20211129000442382](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211129000442382.png)
 
 ![image-20211129000504071](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211129000504071.png)
+
+## 18.Nested Routes
+
+- Vue支持多级嵌套路由
+- 支持并列2个router-view，声明不同name属性,指定加载的组件到指定
+
+![image-20211205222807621](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211205222807621.png)
+
+- 支持并列多个个router-view，声明不同name属性，指定加载的组件到指定
+
+![image-20211205223412748](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211205223412748.png)
+
+![image-20211205223725696](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211205223725696.png)
