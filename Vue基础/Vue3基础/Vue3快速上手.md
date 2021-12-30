@@ -366,3 +366,10 @@ setup(){
 - 什么是hook?--本质是一个函数，把setup函数中使用的CompostionAPI进行了封装
 - 类似于vue2.x中的mixin
 - 自定义hook的优势：复用代码，让setup函数中的逻辑更清楚易懂
+
+## 10.toRef
+
+- 作用：创建一个ref对象，其value值指向另一个对象中的某个属性
+- 语法 : const name = toRef(person,'name')
+- 应用：要将响应式对象中的某个属性单独提供给外部使用
+- 扩展：toRefs与toRef功能一致，但可以批量创建多个ref对象，语法：toRefs(person)
