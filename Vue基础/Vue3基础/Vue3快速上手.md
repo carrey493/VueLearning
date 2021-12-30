@@ -373,3 +373,13 @@ setup(){
 - 语法 : const name = toRef(person,'name')
 - 应用：要将响应式对象中的某个属性单独提供给外部使用
 - 扩展：toRefs与toRef功能一致，但可以批量创建多个ref对象，语法：toRefs(person)
+
+# 三、其他的Composition API
+
+## 1.shallowReactive 与 shallowRef
+
+- shallowReactive:只处理对象最外层属性的响应式（浅响应式）
+- shallowRef:只处理基本数据类型的响应式，不进行对象的响应式处理
+- 什么时候用？
+  - 如果有一个对象数据，结构比较深，但变化时只是外层属性变化===》shallowReactive
+  - 如果有一个对象数据，后续功能不会修改该对象中的属性，而是生成新的对象来替换===》shallowRef
