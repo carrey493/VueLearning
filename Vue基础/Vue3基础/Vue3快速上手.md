@@ -404,3 +404,37 @@ setup(){
   - 1.有些值不应被设置为响应式的，例如复杂的第三方类库等
   - 2.当渲染具有不可变数据源的大列表时，跳过响应式转换可以提高性能
 
+## 4.customRef
+
+- 作用：创建一个自定义的ref,并对其依赖项跟踪和更新触发进行显示控制
+- 实现防抖效果
+
+```
+setup() {
+    //自定义一个ref--名为：myRef
+    function myRef(value,delay) {
+      let timer;
+      return customRef((track, trigger) => {
+        return {
+          get() {
+            track(); ///通知vue追踪数据的改变
+            return value;
+          },
+          set(newValue) {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+              value = newValue;
+              trigger(); //通知vue去重新解析模板
+            }, delay);
+          },
+        };
+      });
+    }
+
+    // let keyWord = ref("hello");//使用vue提供的ref
+    let keyWord = myRef("hello",500); //使用程序员提供的ref
+
+    return { keyWord };
+  }
+```
+
