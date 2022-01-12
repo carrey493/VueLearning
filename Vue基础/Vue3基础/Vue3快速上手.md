@@ -438,3 +438,34 @@ setup() {
   }
 ```
 
+## 5.provide与inject
+
+- 作用：实现祖孙组件间通信
+
+- 套路：父组件有一个provide选项来提供数据，后代组件有一个inject选项来开始使用这些数据
+
+- 具体写法
+
+  - 1.祖组件中
+
+  ```js
+  setup(){
+  	......
+  	let car = reactive({name:'奔驰',price:'40万'})
+  	provide('car',car)
+  	......
+  }
+  ```
+
+  - 2.孙组件中
+
+  ```js
+  setp(props,context){
+  	......
+  	const car = inject('car')
+  	return {car}
+      ......
+  }
+  ```
+
+  
