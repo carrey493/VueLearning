@@ -537,4 +537,26 @@ setup() {
   </Suspense>
   ```
 
-  
+
+# 六、其它
+
+## 1.全局API的转移
+
+- ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b4ebf8ea1f30484cb64ac0c84cf7e811~tplv-k3u1fbpfcp-watermark.image?)
+
+- ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/925546ffea1d424bb772231b1c64ee79~tplv-k3u1fbpfcp-watermark.image?)
+
+## 2.其它改变
+
+- data选项应始终被声明为一个函数
+- 过度类名的更改
+  - ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d058270ab7de43118072f4584538817a~tplv-k3u1fbpfcp-watermark.image?)
+  - ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c5289e8a321847d98c03d4a3739aceea~tplv-k3u1fbpfcp-watermark.image?)
+
+- 移除keyCode作为v-on的修饰符，同时也不再支持 config.keycodes
+- 移除v-on.native修饰符
+  - ![image.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/415d918e6ab6428a94b877210d61f8c4~tplv-k3u1fbpfcp-watermark.image?)
+  - ![image-20220204221744677](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220204221744677.png)
+
+- 移除过滤器(filter)
+- ......
