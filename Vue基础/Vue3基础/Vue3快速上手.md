@@ -1,4 +1,4 @@
-# Vue3快速上手
+Vue3快速上手
 
 ## 1.Vue3简介
 
@@ -484,15 +484,15 @@ setup() {
 
 - 我们可以更加优雅的组织我们的代码、函数。让相关功能的代码更加有序的组织在一起
 
-## 五、新的组件
+# 五、新的组件
 
-### 1.Fragment
+## 1.Fragment
 
 - 在Vue2中：组件必须有一个跟标签
 - 在Vue3中：组件可以没有跟标签，内部会将多个标签包含在一个Fragment虚拟元素中
 - 好处：减少标签层级，减少内存占用
 
-### 2.Teleport
+## 2.Teleport
 
 - 什么是Teleport? --- Teleport 是一种能够将我们的组件html结构移动到指定位置的技术
 
@@ -511,3 +511,30 @@ setup() {
 </teleport>
 ```
 
+## 3.Suspense
+
+- 等待异步组件时渲染一些额外的内容，让应用有更好的用户体验
+
+- 使用步骤
+
+  - 异步引入组件
+
+  ```js
+  import { defineAsyncComponent } from "vue";
+  const Child = defineAsyncComponent(() => import("./components/Child.vue")); //异步引入组件
+  ```
+
+  - 使用Suspense包裹组件，并配置好default与fallback
+
+  ```js
+  <Suspense>
+      <template v-slot:default>
+          <Child />
+      </template>
+      <template v-slot:fallback>
+          <h3>加载中~~~</h3>
+      </template>
+  </Suspense>
+  ```
+
+  
