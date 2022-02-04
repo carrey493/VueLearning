@@ -489,5 +489,25 @@ setup() {
 ### 1.Fragment
 
 - 在Vue2中：组件必须有一个跟标签
-- 在Vee3中：组件可以没有跟标签，内部会将多个标签包含在一个Fragment虚拟元素中
+- 在Vue3中：组件可以没有跟标签，内部会将多个标签包含在一个Fragment虚拟元素中
 - 好处：减少标签层级，减少内存占用
+
+### 2.Teleport
+
+- 什么是Teleport? --- Teleport 是一种能够将我们的组件html结构移动到指定位置的技术
+
+```html
+<teleport to="#example">
+    <!-- <teleport to="body"> -->
+    <div v-if="isShow" class="mask">
+        <div class="dialog">
+            <h3>我是弹窗</h3>
+            <h4>我是内容</h4>
+            <h4>我是内容</h4>
+            <h4>我是内容</h4>
+            <button @click="isShow = false">关闭弹窗</button>
+        </div>
+    </div>
+</teleport>
+```
+
