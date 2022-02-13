@@ -80,3 +80,13 @@ mock.onPost('login').reply((c) => {
   }
   return result
 })
+
+//模拟加密的token被篡改
+mock.onGet('index').reply((c) => {
+  let result = [403, { maeeage: '无权限' }]
+  let auth = c.headers['Authorization']
+  if (auth == '65a1c6a5ca65c1a') {
+    result = [200, { name: 'BO' }]
+  }
+  return result
+})

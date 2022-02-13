@@ -128,6 +128,11 @@ const routes = [
       },
     ],
   },
+  {
+    name: 'Example11',
+    path: '/example11',
+    component: () => import('@/views/example11/example11-01.vue'),
+  },
 ]
 
 const router = new VueRouter({
@@ -135,3 +140,38 @@ const router = new VueRouter({
 })
 
 export default router
+
+//以上是默认路由
+//以下是追加的路由
+
+let adminRoutes = [
+  {
+    props: true,
+    path: '/example11/welcome',
+    component: () => import('@/views/example11/Welcome.vue'),
+  },
+]
+
+//必须与后端提前约定。按角色，动态加载路由信息
+//使其它角色即使知道路由路径，也无法加载对应组件
+
+const teacherRole = '6983f953b49c88210cb9'
+const studentRole = 'bb63e5f7e0f2ffae845c'
+
+//暴露该方法登录后由vuex调用，通知更新信息
+
+export function updateRoutes() {
+  switch (sessionStorage.getItem('role')) {
+    case teacherRole:
+      router.addRoutes(adminRoutes)
+      break
+    case studentRole:
+      //student的路由
+      break
+  }
+}
+
+//在此文件加载模块时，也执行。用户登陆后刷新页面时，按sessionStorage中数据初始化
+//没有找到sessionStorage的监听事件
+
+updateRoutes()

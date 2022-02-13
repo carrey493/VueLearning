@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as types from './types'
 import axios from '@/axios/MyAxios'
+import { updateRoutes } from '@/router/index'
 
 Vue.use(Vuex)
 
@@ -11,10 +12,11 @@ const myState = {
     address: '910',
   },
   homeworks: [],
-  homework: {},
+  homework: { name: null, deadline: null },
   exception: {
     message: null,
   },
+  isLogin: false,
 }
 const myMutations = {
   [types.UPDATEUESR](state, data) {
@@ -51,6 +53,16 @@ const myActions = {
   },
   async [types.LOGIN]({ commit }, data) {
     let resp = await axios.post('login', data)
+    if (resp != null) {
+      sessionStorage.setItem('Authorization', resp.headers['Authorization'])
+      sessionStorage.setItem('role', resp.data.role)
+      updateRoutes()
+      commit(types.LOGIN, true)
+    }
+  },
+  async index({ commit }, data) {
+    let resp = await axios.get('index', data)
+    commit('name', resp.data.name)
   },
 }
 
@@ -60,3 +72,7 @@ export default new Vuex.Store({
   actions: myActions,
   modules: {},
 })
+
+if (sessionStorage.getItem('Authorization') != null) {
+  myState.isLogin = true
+}

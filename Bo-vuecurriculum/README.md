@@ -545,3 +545,39 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ![image-20211205223412748](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211205223412748.png)
 
 ![image-20211205223725696](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20211205223725696.png)
+
+## 19.SessionStorage
+
+### 1.HTML5 Web Storage
+
+- With web storage, web applications can store data locally within the user'sbrowser.
+
+- Web storage is per origin (per domain and protocol).All pages, from oneorigin, can store and access the same data.
+- 随着富客户端快速发展，普通本地存储(cookie)无法满足前端需要的大量数据的存储需求
+- 包括本地数据库技术
+  - IndexedDB/WebSQL等
+- 包括基于键值对
+  - LocalStorage/SessionStorage
+- HTML web storage provides two objects for storing data on the client: 
+  - window.localStorage - stores data with no expiration date
+  - window.sessionStorage - stores data for one session (data is lost when thebrowser tab is closed)
+- Web storage中,均以键值对保存数据
+- LocalStorage，本地全局数据存储。永久性数据，需手动删除，无加密，可跨域调用
+- SessionStorage，当前页面标签存储。仅与当前页面绑定，标签/浏览器关闭,数据自动销毁![image-20220213130103958](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220213130103958.png)
+
+​		![image-20220213130120593](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220213130120593.png)
+
+![image-20220213130226443](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220213130226443.png)
+
+![image-20220213130235762](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220213130235762.png)
+
+- 为确保页面被刷新时，依然能够按登录/角色等数据状态渲染组件
+- 在加载需要以上信息的模块时,基于数据创建对象
+
+![image-20220213130354006](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220213130354006.png)
+
+![image-20220213130438453](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220213130438453.png) 
+
+![image-20220213130623392](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220213130623392.png)
+
+![image-20220213130705965](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220213130705965.png)
