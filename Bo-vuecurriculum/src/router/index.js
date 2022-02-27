@@ -133,6 +133,11 @@ const routes = [
     path: '/example11',
     component: () => import('@/views/example11/example11-01.vue'),
   },
+  /* {
+    name: 'Example12',
+    path: '/example12',
+    component: () => import('@/views/example12/example12-01.vue'),
+  }, */
 ]
 
 const router = new VueRouter({

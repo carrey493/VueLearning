@@ -581,3 +581,41 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ![image-20220213130623392](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220213130623392.png)
 
 ![image-20220213130705965](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220213130705965.png)
+
+## 20.CORS  policy
+
+- 发出请求的地址与目标地址,域名(IP)+端口一致,即为,同源
+- 浏览器持有用户大量敏感数据。因此，同源安全策略，即限制跨域请求(尤其基于Ajax发出的请求)，是浏览器的一种安全机制
+- 即使本地应用，浏览器打开的网页试图从8o81向8o8o端口发出请求，依然是跨域请求
+- 但,跨域资源共享是一种，允许从提供一个资源的域外的另一个域请求受限资源的机制
+- CORS(Cross-origin resource sharing)，浏览器实现跨域请求的技术规
+- 开发测试环境，解决方案·
+  - 基于Vue配置,实现跨域
+  - 或,后端服务配置CORS跨域规范
+- 生产环境,解决方案
+  - 由部署的静态web容器(nginx等)，配置反向代理实现跨域
+  - 或,后端服务配置CORS跨域规范
+- 前后端联调，需要注释掉前端mock
+- 前后端,单词authorization统一为小写(前端必须小写)
+
+### 后端允许跨域请求
+
+- SpringMVC拦截器与addCorsMappings()跨域解决配置方法冲突
+- 顺序,请求先经过拦截器,因此配置无效
+- 通过创建SpringMVC封装的过滤器实现后端添加CORS信息
+- CorsFilter对象可在自定义的WebMvcConfig类中创建(配置拦截器的类)
+
+![image-20220227193731797](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220227193731797.png)
+
+- 方法1，前端同时需要修改axios全局请求的基本地址。无需vue配置
+- 方法1，不利于开发环境与生产环境间的切换
+- 因此,课程使用方法2实现
+
+![image-20220227194354420](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220227194354420.png)
+
+- 方法2，后端无需改动。前端，vue.config.js添加配置
+- 此方法仅在开发测试环境下有效
+
+![image-20220227202213747](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220227202213747.png)
+
+![image-20220227202239118](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20220227202239118.png)

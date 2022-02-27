@@ -2,6 +2,8 @@ import axios from 'axios'
 import store from '@/store/index'
 axios.defaults.baseURL = '/api/'
 import { GET_EXCEPTION } from '@/store/types'
+import { author } from '@/utils/Const'
+//axios.defaults.baseURL = 'http://localhost:8080/api/'
 
 //请求拦截器
 axios.interceptors.request.use(

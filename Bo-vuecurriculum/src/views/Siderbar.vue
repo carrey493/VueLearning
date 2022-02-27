@@ -73,6 +73,10 @@
         <li>SessionStorage</li>
         <li><router-link to="/example11">SessionStorage</router-link></li>
       </ul>
+      <ul>
+        <li>CORS policy</li>
+        <li><router-link to="/example13">跨域请求</router-link></li>
+      </ul>
     </ul>
   </div>
 </template>

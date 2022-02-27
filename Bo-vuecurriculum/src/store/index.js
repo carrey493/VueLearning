@@ -17,6 +17,9 @@ const myState = {
     message: null,
   },
   isLogin: false,
+  name: null,
+  teacher: null,
+  courses: null,
 }
 const myMutations = {
   [types.UPDATEUESR](state, data) {
@@ -30,6 +33,15 @@ const myMutations = {
   },
   [types.GET_EXCEPTION](state, data) {
     state.exception = data
+  },
+  name(state, data) {
+    state.name = data
+  },
+  teacher(state, data) {
+    state.teacher = data
+  },
+  courses(state, data) {
+    state.courses = data
   },
 }
 const myActions = {
@@ -63,6 +75,12 @@ const myActions = {
   async index({ commit }, data) {
     let resp = await axios.get('index', data)
     commit('name', resp.data.name)
+  },
+  //以下为向soringboot发出请求
+  async backendindex({ commit }, data) {
+    let resp = await axios.get('teacher/index')
+    commit('teacher', resp.data.teacher)
+    commit('courses', resp.data.courses)
   },
 }
 
