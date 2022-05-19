@@ -126,3 +126,20 @@
   - webpack
   - parcel
 
+### webpack的基本使用
+
+#### 1.什么是webpack
+
+- 概念: webpack是前端项目工程化的具体解决方案。
+- 主要功能:它提供了友好的前端模块化开发支持，以及代码压缩混淆、处理浏览器端JavaScript 的兼容性、性能优化等强大的功能。
+- 好处:让程序员把工作的重心放到具体功能的实现上，提高了前端开发效率和项目的可维护性。
+- 注意:目前Vue,React等前端项目，基本上都是基于 webpack进行工程化开发的。
+
+#### 2.创建列表隔行变色项目
+
+- 新建项目空白目录，并运行npm init -y命令，初始化包管理配置文件 package.json
+- 新建src源代码目录
+- 新建src -> index.html首页和src -> index.js 脚本文件
+- 初始化首页基本的结构
+- 运行npm install jquery -s命令，安装jQuery
+- 通过ES6模块化的方式导入jQuery，实现列表隔行变色效果
