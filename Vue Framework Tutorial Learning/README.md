@@ -143,3 +143,32 @@
 - 初始化首页基本的结构
 - 运行npm install jquery -s命令，安装jQuery
 - 通过ES6模块化的方式导入jQuery，实现列表隔行变色效果
+
+#### 3.在项目中安装webpack
+
+- 在终端运行如下的命令，安装webpack相关的两个包:npm install webpack@5.42.1 webpack-cli@4.7.2
+- -S是--save的简写 ： dependencies：开发和生产环境下都需要
+- -D是--save-dev的简写引 devDependencies：只在开发环境下需要
+
+#### 4.在项目中配置webpack
+
+- 在项目根目录中，创建名为webpack.config.js的webpack配置文件，并初始化如下的基本配置:
+
+```json
+module.exports = {
+	mode: "development"
+    //mode用来指定构建模式。可选值有 development 和 production
+}
+
+```
+
+- 在package.json的 scripts节点下，新增dev脚本如下:
+
+```json
+"scripts": {
+	"dev" :"webpack"
+} // script 节点下的脚本，可以通过 npm run 执行。例如npm run dev
+```
+
+- 在终端中运行npm run dev命令，启动webpack进行项目的打包构建
+
