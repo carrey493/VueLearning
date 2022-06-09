@@ -5,5 +5,5 @@ import $ from 'jquery'
 $(function () {
     //3.具体实现
     $('li:odd').css('background-color', 'red')
-    $('li:even').css('background-color', 'orange')
+    $('li:even').css('background-color', 'blue')
 })

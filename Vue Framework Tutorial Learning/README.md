@@ -184,4 +184,26 @@ module.exports = {
   - 生产环境
   - 会对打包生成的文件进行代码压缩和性能优化
   - 打包速度很慢，仅适合在项目发布阶段使用
+**run 脚本的时候去读取命令**
+
+#### 6.webpack中的默认约定
+- 在webpack 4.x和5.x的版本中，有如下的默认约定:
+  - 默认的打包入口文件为src -> index.js
+  - 默认的输出文件路径为dist -> main.js
+- 注意:可以在webpack.config.js中修改打包的默认约定
+
+#### 7自定义打包的入口与出口
+在webbpack.config.js配置文件中，通过entry节点指定打包的入口。通过output节点指定打包的出口。示例代码如下:
+```js
+//entry指定要处理的文件路径
+    entry: path.join(__dirname, './src/test.js'),
+
+    //output指定生成文件的存放目录
+    output: {
+        //生成的目录
+        path: path.join(__dirname, 'dist'),
+        //生成的文件名
+        filename:'bundle.js'
+    }
+```
 
