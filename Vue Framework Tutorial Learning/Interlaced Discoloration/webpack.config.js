@@ -16,5 +16,9 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         //生成的文件名
         filename:'bundle.js'
+    },
+    devServer: {
+        static: '.',
+        port: 8081
     }
 }

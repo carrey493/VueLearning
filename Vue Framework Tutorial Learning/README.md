@@ -174,7 +174,7 @@ module.exports = {
 
 #### 5.了解mode可选值的应用场景
 
-**mode节点的可选值有两个，分别是**
+**mode节点的可选值有两个，分别是** 
 
 - development
   - 开发环境
@@ -206,4 +206,29 @@ module.exports = {
         filename:'bundle.js'
     }
 ```
+
+### webpack中的插件
+
+#### 1.webpack插件的作用
+
+通过安装和配置第三方的插件，可以拓展webpack的能力，从而让webpack用起来更方便。最常用的webpack 插件有如下两个:
+- webpack-dev-server
+  - 类似于node.js阶段用到的nodemon工具
+  - 每当修改了源代码，webpack 会自动进行项目的打包和构建
+- html-webpack-plugin
+  - webpack 中的HTML插件（类似于一个模板引擎插件)
+  - 可以通过此插件自定制index.html页面的内容
+
+#### 2.1安装webpack-dev-server
+运行如下的命令，即可在项目中安装此插件:
+npm install webpack-dev-server@3.11.2 -D
+
+#### 2.2配置webpack-dev-server
+- 修改package.json Pscripts 中的dev命令如下:
+```js
+"scripts": {"dev"": "wcbpack serve"} //script 节点下的脚本，可以通过npm run执行3 
+```
+- 再次运行npm run dev命令，重新进行项目的打包
+- 在浏览器中访问http://localhost:8080地址，查看自动打包效果
+注意:webpack-dev-server会启动一个实时打包的http服务器
 

@@ -26,7 +26,7 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n//1.引入 jquery\n\n\n//2.定义入口函数\njquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {\n    //3.具体实现\n    jquery__WEBPACK_IMPORTED_MODULE_0___default()('li:odd').css('background-color', 'red')\n    jquery__WEBPACK_IMPORTED_MODULE_0___default()('li:even').css('background-color', 'blue')\n})\n\n//# sourceURL=webpack://interlaced-discoloration/./src/test.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n//1.引入 jquery\r\n\r\n\r\n//2.定义入口函数\r\njquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {\r\n    //3.具体实现\r\n    jquery__WEBPACK_IMPORTED_MODULE_0___default()('li:odd').css('background-color', 'red')\r\n    jquery__WEBPACK_IMPORTED_MODULE_0___default()('li:even').css('background-color', 'yellow')\r\n})\n\n//# sourceURL=webpack://interlaced-discoloration/./src/test.js?");
 
 /***/ })
 
