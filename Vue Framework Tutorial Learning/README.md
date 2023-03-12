@@ -270,3 +270,76 @@ module.exports = {
 
 1. 通过HTML插件复制到项目根目录的index.html页面，也被放到了内存中
 2. HTML插件在生成的index.html页面，自动注入了打包的bundle.js文件
+
+#### 3.4 devServer节点
+
+在webpack.config.js 配置文件中，可以通过`devServer`节点对webpack-dev-server插件进行更多的配置,示例代码如下:
+
+```js
+devServer:{
+  open:true, //初次打包完成后，自动打开浏览器
+  host:'127.0.0.1', //实时打包所使用的主机地址
+  port:80 //实时打包所使用的端口号
+}
+```
+
+注意:凡是修改了webpack.config.js 配置文件，或修改了package.json配置文件，**必须重启实时打包的服务器**，否则最新的配置文件无法生效!
+
+### webpack中的loader
+
+#### 1 loader概述
+
+在实际开发过程中，webpack默认只能打包处理以.js后缀名结尾的模块。其他**非.js 后缀名结尾的模块**,webpack 默认处理不了，**需要调用loader加载器才可以正常打包**，否则会报错!
+
+loader加载器的作用:**协助webpack 打包处理特定的文件模块**。比如
+
+- css-loader 可以打包处理.css相关的文件
+- less-loader可以打包处理.less相关的文件
+- babel-loader可以打包处理 webpack无法处理的高级JS语法
+
+#### 2 lodaer的调用过程
+
+![](https://img2023.cnblogs.com/blog/2332774/202303/2332774-20230312221136601-837881825.png)
+
+处理css文件
+
+![](https://img2023.cnblogs.com/blog/2332774/202303/2332774-20230312221648262-750369600.png)
+
+#### 3 打包处理css文件
+
+1. 运行npm i style-loader@3.0.0 css-loader@5.2.6 -D命令，安装处理css文件的loader
+2. 在webpack.config.js 的module -> rules 数组中，添加 loader 规则如下:
+
+```js
+module:{ // 所有第三方模块的匹配规则
+  rules:[ // 文件后缀名的匹配规则
+    {test:/\.css$/,use:['style-loader','css-loader']}
+  ]
+}
+```
+
+其中，**test**表示匹配的**文件类型**，**use**表示对应要**调用的loader**
+
+注意：
+- use数组中指定的loader**顺序是固定的**
+- 多个loader的调用顺序是：**从后往前调用**
+
+**loader**调用顺序
+1. webpack 默认只能打包处理.js结尾的文件。处理不了其它后缀的文件
+2.由于代码中包含了index.css 这个文件，因此 webpack默认处理不了
+3. 当webpack 发现某个文件处理不了的时候，会查找webpack.config.js 这个配置文件，f module.rules 数组中，是否配置了对应的loader 加载器。
+4. webpack 把index.css 这个文件，先转交给最后一个loader进行处理（先转交给css-loader)
+5. 当css-loader处理完毕之后。会把处理的结果，转交给下一个loader(转交给style-loader)
+6. 当style-loader处理完毕之后，发现没有下一个loader了，于是就把处理的结果，转交给了webpack
+7. webpack 把 style-loader处理的结果，合并到/dist/bundle.js中，最终生成打包好的文件。
+
+#### 4 打包处理less文件
+1. 运行npm i less-loader@10.0.1 less@4.1.1 -D命令
+2. 在webpack.config.js 的 module -> rules数组中，添加loader 规则如下:
+```js
+module:{ // 所有第三方模块的匹配规则
+  rules:[ // 文件后缀名的匹配规则
+    {test:/\.less$/,use:['style-loader','css-loader','less-loader']}
+  ]
+}
+```

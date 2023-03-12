@@ -26,6 +26,16 @@ module.exports = {
     },
     devServer: {
         static: '.',
+        open: true,
+        //指定运行的地址
+        host: '127.0.0.1',
+        //在http协议中如果端口号是80则端口号可以省略
         port: 8081
+    },
+    module: {
+        rules: [ // 文件后缀名的匹配规则
+            { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+            { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] }
+        ]
     }
 }
