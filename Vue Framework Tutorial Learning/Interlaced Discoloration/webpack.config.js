@@ -35,7 +35,9 @@ module.exports = {
     module: {
         rules: [ // 文件后缀名的匹配规则
             { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-            { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] }
+            { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
+            // 如果需要调用的 loader只有一个，则只传递一个字符串也行，如果有多个loader则必须指定数组
+            { test: /\.jpg|png|gif$/, use: 'url-loader?limit=22229'}
         ]
     }
 }
