@@ -106,7 +106,7 @@
 - 能够知道如何封装axios请求模块
 - 能够知道如何实现上拉加载和下拉刷新功能
 
-### 前端工程化
+### 一、前端工程化
 
 #### 1 工程化
 
@@ -129,7 +129,7 @@
   - webpack
   - parcel
 
-### webpack的基本使用
+### 二、webpack的基本使用
 
 #### 1 什么是webpack
 
@@ -210,7 +210,7 @@ module.exports = {
     }
 ```
 
-### webpack中的插件
+### 三、webpack中的插件
 
 #### 1 webpack插件的作用
 
@@ -223,7 +223,9 @@ module.exports = {
   - webpack 中的HTML插件（类似于一个模板引擎插件)
   - 可以通过此插件自定制index.html页面的内容
 
-#### 2.1 安装webpack-dev-server
+#### 2webpack-dev-server
+
+##### 2.1 安装webpack-dev-server
 
 代码改变后实时监听代码改动并重新渲染
 
@@ -231,7 +233,7 @@ module.exports = {
 
 npm install webpack-dev-server@3.11.2 -D
 
-#### 2.2 配置webpack-dev-server
+##### 2.2 配置webpack-dev-server
 
 - 修改package.json Pscripts 中的dev命令如下:
   
@@ -243,7 +245,9 @@ npm install webpack-dev-server@3.11.2 -D
 
 注意:webpack-dev-server会启动一个实时打包的http服务器
 
-#### 3.1 安装 html-webpack-plugin
+#### 3.html-webpack-plugin
+
+##### 3.1 安装 html-webpack-plugin
 
 // 项目发布的时候会把所有文件都放在一个目录下也就是dist
 
@@ -251,7 +255,7 @@ npm install webpack-dev-server@3.11.2 -D
 
 npm install html-webpack-plugin@5.3.2 -D
 
-#### 3.2 配置 html-webpack-plugin
+##### 3.2 配置 html-webpack-plugin
 
 ```js
 // 1. 导入HTML插件，得到一个构造函数
@@ -269,12 +273,12 @@ module.exports = {
 }
 ```
 
-#### 3.3 解惑 html-webpack-plugin
+##### 3.3 解惑 html-webpack-plugin
 
 1. 通过HTML插件复制到项目根目录的index.html页面，也被放到了内存中
 2. HTML插件在生成的index.html页面，自动注入了打包的bundle.js文件
 
-#### 3.4 devServer节点
+##### 3.4 devServer节点
 
 在webpack.config.js 配置文件中，可以通过`devServer`节点对webpack-dev-server插件进行更多的配置,示例代码如下:
 
@@ -288,7 +292,7 @@ devServer:{
 
 注意:凡是修改了webpack.config.js 配置文件，或修改了package.json配置文件，**必须重启实时打包的服务器**，否则最新的配置文件无法生效!
 
-### webpack中的loader
+### 四、webpack中的loader
 
 #### 1. loader概述
 
@@ -365,3 +369,51 @@ module: { //所有第三方文件模块的匹配规则
 - limit 用来指定`图片的大小`，单位是字节( byte)
 
 - 只有`<=`limit大小的图片，才会被转为base64格式的图片
+
+#### 6.打包处理js 文件中的高级语法
+
+webpack只能打包处理`一部分`高级的JavaScript语法。对于那些webpack无法处理的高级js 语法，需要借助于 `babel-loader`进行打包处理。例如 webpack无法处理下面的JavaScript代码:
+
+```js
+// 1．定义了名为 info 的装饰器
+function info(target) {
+  //2．为目标添加静态属性 info
+  target.info = "Person info";
+}
+//3.为 Person类应用info装饰器
+@info
+class Person {}
+//4、打印 Person 的静态属性 info
+onsole.log(Person.info);
+
+```
+
+##### 6.1安装babel-loader相关的包
+
+运行如下的命令安装对应的依赖包:
+
+> npm i babel-loader@8.2.2 @babel/core@7.14.6@babel/plugin-proposal-decorators@7.14.5-D
+
+在webpack.config.js 的 module -> rules数组中，添加loader规则如下:
+
+```JS
+注意:必须使用exclude指定排除项;因为node_modules目录下的第三方包不需要被打包
+
+{{ test: /\.js$/, use: "babel-loader", exclude: /node_modules/ }, // exclude排除node_modules
+```
+
+
+
+##### 6.2配置babel-loader
+
+在项目根目录下，创建名为babel.config.js 的配置文件，定义Babel的配置项如下:
+
+```js
+module.exports = {
+    //声明babel 可用的插件
+    plugins: [["@babel/plugin-proposal-decorators", { legacy: true }]],
+}
+```
+
+详情请参考Babel的官网https://babeljs.io/docs/en/babel-plugin-proposal-decorators
+
