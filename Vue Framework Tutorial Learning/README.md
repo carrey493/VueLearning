@@ -417,3 +417,76 @@ module.exports = {
 
 详情请参考Babel的官网https://babeljs.io/docs/en/babel-plugin-proposal-decorators
 
+### 五、打包发布
+
+#### 1.为什么要打包发布
+
+**项目开发完成之后**，需要使用webpack**对项目进行打包发布**，主要原因有以下两点:
+
+1. 开发环境下，打包生成的文件**存放于内存中**，无法获取到最终打包生成的文件
+2. 开发环境下，打包生成的文件**不会进行代码压缩和性能优化**
+
+**为了让项目能够在生产环境中高性能的运行**，因此需要对项目进行打包发布。
+
+
+
+#### 2.配置webpack的打包发布
+
+在**package.json**文件的**scripts**节点下，新增build命令如下:
+
+```json
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && webpack serve",
+    "build": "webpack --mode production"
+}
+```
+
+**--model**是一个参数项，用来指定webpack的**运行模式**。production代表生产环境，会对打包生成的文件进行**代码压缩**和**性能优化**。
+
+注意:通过--model指定的参数项，会**覆盖**webpack.config.js 中的model选项。
+
+--model的优先级高于配置文件中的mode
+
+
+
+#### 3.把JavaScript文件统一生成到js 目录中
+
+在**webpack.config.js** 配置文件的 **output**节点中，进行如下的配置:
+
+```js
+output: {
+    //生成的目录
+    path: path.join(__dirname, "dist"),
+    //生成的文件名
+    filename: "js/bundle.js",
+},
+```
+
+
+
+#### 4.把图片文件统一生成到image目录中
+
+修改webpack.config.js 中的**url-loader**配置项，新增**outputPath**选项即可指定图片文件的输出路径:
+
+```js
+{ test: /\.jpg|png|gif$/, use: "url-loader?limit=22229&outputPath=images" },
+```
+
+
+
+#### 5.自动清理dist目录下的旧文件
+
+为了在每次打包发布时自动清理掉dist目录中的旧文件，可以安装并配置clean-webpack-plugin插件:
+
+ ```js
+//1．安装清理dist目录的 webpack 插件
+npm install clean-webpack-plugin@3.0.0 -D
+//2．按需导入插件、得到插件的构造函数之后，创建插件的实例对象
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const cleanPlugin = new CleanWebpackPlugin();
+//3．把创建的cleanPlugin插件实例对象，挂载到plugins节点中
+plugins: [htmlPlugin,cleanPlugin],//挂载插件
+
+ ```
+
