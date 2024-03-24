@@ -13,23 +13,26 @@
 //js或ts
 export default {
   name: "Person", //组件名
-  data() {
-    return {
-      name: "张三",
-      age: 18,
-      tel: "13256891256",
-    };
-  },
-  methods: {
-    showTel() {
-      alert(this.tel);
-    },
-    changeName() {
-      this.name = "李四";
-    },
-    changeAge() {
-      this.age = 20;
-    },
+  setup() {
+    // setup中的this为uufined
+
+    // 数据
+    let name = "张三"; // 此时的数据不是相应时
+    let age = 18; // 此时的数据不是相应时
+    let tel = 132589; // 此时的数据不是相应时
+
+    // 方法
+    function changeName() {
+      name = "zhang-san"; // 这样修改是无效的
+    }
+    function changeAge() {
+      age += 1; // 这样修改是无效的
+    }
+    function showTel() {
+      alert(tel);
+    }
+
+    return { name, age, tel, changeName, changeAge, showTel };
   },
 };
 </script>
@@ -43,6 +46,6 @@ export default {
   padding: 20px;
 }
 button {
-    margin:  0 5px;
+  margin: 0 5px;
 }
 </style>
