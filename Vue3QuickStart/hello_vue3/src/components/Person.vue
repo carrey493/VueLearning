@@ -6,6 +6,10 @@
     <button @click="changeName">修改名字</button>
     <button @click="changeAge">修改年龄</button>
     <button @click="showTel">查看联系方式</button>
+    <hr />
+    {{ a }}
+    <p>{{ c }}</p>
+    <button @click="b">点击b</button>
   </div>
 </template>
 
@@ -13,6 +17,18 @@
 //js或ts
 export default {
   name: "Person", //组件名
+  data() {
+    return {
+      a: 100,
+      c: this.name,
+      d: 900,
+    };
+  },
+  methods: {
+    b() {
+      console.log("b");
+    },
+  },
   setup() {
     // setup中的this为uufined
 
@@ -20,6 +36,7 @@ export default {
     let name = "张三"; // 此时的数据不是相应时
     let age = 18; // 此时的数据不是相应时
     let tel = 132589; // 此时的数据不是相应时
+    // let x = d;
 
     // 方法
     function changeName() {

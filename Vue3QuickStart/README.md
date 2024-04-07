@@ -197,3 +197,14 @@ button {
 - `setup` 函数返回的对象中的内容，可直接在模板中使用。
 - `setup` 中访问 this 是 undefined 。
 - `setup` 函数会在 beforeCreate 之前调用，它是“领先”所有钩子执行的。
+
+**setup 的返回值**
+
+`setup` 的返回值可以是一个对象也可以指直接是一个渲染函数，返回直接渲染的内容。
+
+**setup 与 OptionsAPI**
+
+1. `setup`、`data`、`methods`都是可以同时存在并使用的。
+2. `setup`里的数据`data`中可以读取到：`setup`比`data`执行的要早，因此可以读取到。
+3. `setup`里不可以读取到`data`中的数据
+
